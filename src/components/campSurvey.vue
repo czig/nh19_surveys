@@ -2,9 +2,11 @@
     <v-container fluid>
         <v-stepper v-model="step">
             <v-stepper-header>
-                <v-stepper-step :complete="step > 1" step="1">{{surveyName}}</v-stepper-step> 
+                <v-stepper-step :complete="step > 1" step="1">Demographic Information</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step step="2">Complete</v-stepper-step> 
+                <v-stepper-step :complete="step > 2" step="2">Assessment Information</v-stepper-step> 
+                <v-divider></v-divider>
+                <v-stepper-step step="3">Complete</v-stepper-step> 
             </v-stepper-header>
             <v-stepper-items>
                 <!--survey here-->
@@ -63,8 +65,20 @@
                                         </v-radio-group>
                                     </v-flex>
                                 </v-layout>
-                                <br>
-                                <br>
+                            </v-container>  
+                        </v-form>
+                    </v-layout>
+                    <!--submit button-->
+                    <v-layout row>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" @click="step = 2">Continue</v-btn>
+                    </v-layout>
+                </v-stepper-content>
+                <!--assessment info step-->
+                <v-stepper-content step="2">
+                    <v-layout row>
+                        <v-form>
+                            <v-container>
                                 <span class="title">Assessment Information</span>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
@@ -168,7 +182,7 @@
                     </v-layout>
                 </v-stepper-content>
                 <!--completion step-->
-                <v-stepper-content step="2">
+                <v-stepper-content step="3">
                     <thanks></thanks>
                     <v-layout row>
                         <v-spacer></v-spacer>
@@ -212,7 +226,19 @@
         methods: {
             submit: function() {
                 console.log(this.responses)
-                this.step = 2  
+                axios.post("http://localhost:5005/api/submitCampSurvey", this.responses)
+                .then((res) => {
+                    console.log(res)
+                    if (res) {
+                        this.step = 3  
+                    } else {
+                        alert('Something went wrong trying to send data to server. Please try again')
+                    }
+                })
+                .catch((err) => {
+                    alert('Something went wrong trying to send data to server. Please try again')
+                })
+
             } 
         }
     }
