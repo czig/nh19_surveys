@@ -7,11 +7,15 @@
             <v-stepper-header>
                 <v-stepper-step :complete="step > 1" step="1">Instructions</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step :complete="step > 2" step="2">Demographic Information</v-stepper-step> 
+                <v-stepper-step :complete="step > 2" step="2">Demographics</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step :complete="step > 3" step="3">Assessment Information</v-stepper-step> 
+                <v-stepper-step :complete="step > 3" step="3">Assessment</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step step="4">Complete</v-stepper-step> 
+                <v-stepper-step :complete="step > 4" step="4">Host Nation Relations</v-stepper-step> 
+                <v-divider></v-divider>
+                <v-stepper-step :complete="step > 5" step="5">Final Comments</v-stepper-step> 
+                <v-divider></v-divider>
+                <v-stepper-step step="6">Complete</v-stepper-step> 
             </v-stepper-header>
             <v-stepper-items>
                 <!--begin-->
@@ -29,7 +33,7 @@
                     <!--navigation buttons-->
                     <v-layout row>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="step = 2">Continue</v-btn>
+                        <v-btn color="primary" @click="goToStep(2)">Continue</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--survey here-->
@@ -37,7 +41,7 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <span class="title">Demographic Information</span>
+                                <span class="title">Demographics</span>
                                 <v-layout row>
                                     <!--question 1-->
                                     <v-flex xs12>
@@ -138,7 +142,7 @@
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="step = 3">Continue</v-btn>
+                        <v-btn color="primary" @click="goToStep(3)">Continue</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--assessment info step-->
@@ -146,7 +150,7 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <span class="title">Assessment Information</span>
+                                <span class="title">Assessment</span>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
                                     <v-flex xs12>
@@ -196,7 +200,100 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>I have been properly trained to execute my assigned tasks.</p>
+                                        <p class="subheading" mt-3 mb-0>This exercise improved my ability to work with other services.</p>
+                                        <v-radio-group v-model="responses.otherServices"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="otherServicesComments"
+                                                    label="Comments"
+                                                    v-model="responses.otherServicesComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>This exercise improved my ability to work with partner nation forces.</p>
+                                        <v-radio-group v-model="responses.partnerNation"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="partnerNationComments"
+                                                    label="Comments"
+                                                    v-model="responses.partnerNationComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>This exercise enhanced my military knowledge, skills, and/or abilities.</p>
+                                        <v-radio-group v-model="responses.knowledge"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="knowledgeComments"
+                                                    label="Comments"
+                                                    v-model="responses.knowledgeComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I feel that my skillsets were properly utilized to execute the mission.</p>
+                                        <v-radio-group v-model="responses.utilization"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="utilizationComments"
+                                                    label="Comments"
+                                                    v-model="responses.utilizationComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I was properly trained to execute my assigned tasks.</p>
                                         <v-radio-group v-model="responses.training"
                                                        height="8"
                                                        row>
@@ -219,7 +316,7 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployed environment empowers me to execute the mission.</p>
+                                        <p class="subheading" mt-3 mb-0>The deployed environment empowered me to execute the mission.</p>
                                         <v-radio-group v-model="responses.deployedEnv"
                                                        height="8"
                                                        row>
@@ -239,6 +336,126 @@
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I was given the right equipment and resources in a timely manner.</p>
+                                        <v-radio-group v-model="responses.timelyEquipment"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="timelyEquipmentComments"
+                                                    label="Comments"
+                                                    v-model="responses.timelyEquipmentComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I was given all of the equipment and resources I needed to complete my assigned tasks.</p>
+                                        <v-radio-group v-model="responses.neededEquipment"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="neededEquipmentComments"
+                                                    label="Comments"
+                                                    v-model="responses.neededEquipmentComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Rate the overall quality of the planning for New Horizons.</p>
+                                        <v-radio-group v-model="responses.planningRating"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="1 (Worst)" value="1"></v-radio> 
+                                            <v-radio label="2" value="2"></v-radio> 
+                                            <v-radio label="3" value="3"></v-radio> 
+                                            <v-radio label="4" value="4"></v-radio> 
+                                            <v-radio label="5" value="5"></v-radio> 
+                                            <v-radio label="6" value="6"></v-radio> 
+                                            <v-radio label="7" value="7"></v-radio> 
+                                            <v-radio label="8" value="8"></v-radio> 
+                                            <v-radio label="9" value="9"></v-radio> 
+                                            <v-radio label="10 (Best)" value="10"></v-radio> 
+
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="planningRatingComments"
+                                                    label="Comments"
+                                                    v-model="responses.planningRatingComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The provided communication networks were sufficient to accomplish the tasks I was assigned.</p>
+                                        <v-radio-group v-model="responses.commNetworks"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="commNetworksComments"
+                                                    label="Comments"
+                                                    v-model="responses.commNetworksComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I was able to communicate effectively, both within the Task Force and to outside organizations.</p>
+                                        <v-radio-group v-model="responses.communicate"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="communicateComments"
+                                                    label="Comments"
+                                                    v-model="responses.communicateComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
                             </v-container>  
                         </v-form>
                     </v-layout>
@@ -246,11 +463,150 @@
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="success" @click="submit">Submit</v-btn>
+                        <v-btn color="primary" @click="goToStep(4)">Continue</v-btn>
+                    </v-layout>
+                </v-stepper-content>
+                <!--relationships questions-->
+                <v-stepper-content step="4">
+                    <v-layout row>
+                        <v-form>
+                            <v-container>
+                                <span class="title">Host Nation Relations</span>
+                                <v-layout row wrap mt-2 pt-2 my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The social exchanges I had with the Guyanese were generally...</p>
+                                        <v-radio-group v-model="responses.socialExchanges"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
+                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
+                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
+                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
+                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="socialExchangesComments"
+                                                    label="Comments"
+                                                    v-model="responses.socialExchangesComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The professional exchanges I had with the Guyanese were generally...</p>
+                                        <v-radio-group v-model="responses.professionalExchanges"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
+                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
+                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
+                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
+                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="professionalExchangesComments"
+                                                    label="Comments"
+                                                    v-model="responses.professionalExchangesComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The social relationships I had with the Guyanese were generally...</p>
+                                        <v-radio-group v-model="responses.socialRelationships"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
+                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
+                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
+                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
+                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="socialRelationshipsComments"
+                                                    label="Comments"
+                                                    v-model="responses.socialRelationshipsComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The professional relationships I had with the Guyanese were generally...</p>
+                                        <v-radio-group v-model="responses.professionalRelationships"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
+                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
+                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
+                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
+                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="professionalRelationshipsComments"
+                                                    label="Comments"
+                                                    v-model="responses.professionalRelationshipsComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>  
+                        </v-form>
+                    </v-layout>
+                    <!--submit button-->
+                    <v-layout row>
+                        <v-btn color="warning" @click="step -= 1">Back</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" @click="goToStep(5)">Continue</v-btn>
+                    </v-layout>
+                </v-stepper-content>
+                <!--final comments-->
+                <v-stepper-content step="5">
+                    <v-layout row>
+                        <v-form>
+                            <v-container>
+                                <span class="title">Final Comments</span>
+                                <v-layout row wrap mt-2 pt-2 my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Do you have any additional comments?</p>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="additionalComments"
+                                                    label="Comments"
+                                                    v-model="responses.additionalComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout>
+                                </v-layout>
+                            </v-container>  
+                        </v-form>
+                    </v-layout>
+                    <!--submit button-->
+                    <v-layout row>
+                        <v-btn color="warning" @click="step -= 1">Back</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" @click="submit">Submit</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--completion step-->
-                <v-stepper-content step="4">
+                <v-stepper-content step="6">
                     <thanks></thanks>
                     <v-layout row>
                         <v-spacer></v-spacer>
@@ -284,10 +640,35 @@
                     deployAbilityComments: '',
                     conductingForeign: '',
                     conductingForeignComments: '',
+                    otherServices: '',
+                    otherServicesComments: '',
+                    partnerNation: '',
+                    partnerNationComments: '',
+                    knowledge: '',
+                    knowledgeComments: '',
+                    utilization: '',
+                    utilizationComments: '',
                     training: '',
                     trainingComments: '',
                     deployedEnv: '',
                     deployedEnvComments: '',
+                    timelyEquipment: '',
+                    timelyEquipmentComments: '',
+                    neededEquipment: '',
+                    neededEquipmentComments: '',
+                    commNetworks: '',
+                    commNetworksComments: '',
+                    communicate: '',
+                    communicateComments: '',
+                    socialExchanges: '',
+                    socialExchangesComments: '',
+                    professionalExchanges: '',
+                    professionalExchangesComments: '',
+                    socialRelationships: '',
+                    socialRelationshipsComments: '',
+                    professionalRelationships: '',
+                    professionalRelationshipsComments: '',
+                    additionalComments: '',
                 },
                 grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','O1','O2','O3','O4','O5','O6'],
             }
@@ -311,7 +692,17 @@
                     alert('Something went wrong trying to send data to server. Please try again')
                 })
 
-            } 
+            },
+            goToStep: function(step) {
+                var options = {
+                    duration: 500,
+                    offset: 0,
+                    easing: 'easeInOutCubic'
+                }
+                //scroll to top of page
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                this.step = step
+            }
         }
     }
 </script>
