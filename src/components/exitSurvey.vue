@@ -24,6 +24,7 @@
                     </v-layout>
                     <v-layout row mt-2>
                         <div class="subheading">Please use the buttons at the bottom of the forms to navigate between steps.</div>
+                        <div class="subheading">Thanks for your time!</div>
                     </v-layout>
                     <!--navigation buttons-->
                     <v-layout row>
@@ -149,8 +150,8 @@
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
                                     <v-flex xs12>
-                                        <div class="subheading" mt-3 mb-0 pb-0>I have the right skill sets to execute the mission.</div>
-                                        <v-radio-group v-model="responses.skillSets"
+                                        <div class="subheading" mt-3 mb-0 pb-0>This exercise improved my ability to deploy and return from deployments.</div>
+                                        <v-radio-group v-model="responses.deployAbility"
                                                        height="8"
                                                        row>
                                             <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
@@ -163,9 +164,32 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="skillSetsComments"
+                                                    name="deployAbilityComments"
                                                     label="Comments"
-                                                    v-model="responses.skillSetsComments">
+                                                    v-model="responses.deployAbilityComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout wrap row my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Conducting this exercise in a foreign country improved my training/skill development more than a similar exercise in the United States.</p>
+                                        <v-radio-group v-model="responses.conductingForeign"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="conductingForeignComments"
+                                                    label="Comments"
+                                                    v-model="responses.conductingForeignComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -195,7 +219,7 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployed environment enhances my ability to execute the mission.</p>
+                                        <p class="subheading" mt-3 mb-0>The deployed environment empowers me to execute the mission.</p>
                                         <v-radio-group v-model="responses.deployedEnv"
                                                        height="8"
                                                        row>
@@ -212,29 +236,6 @@
                                                     name="deployedEnvComments"
                                                     label="Comments"
                                                     v-model="responses.deployedEnvComments">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout wrap row my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployment information I was given is clear, concise, and easy to follow.</p>
-                                        <v-radio-group v-model="responses.deployInfo"
-                                                       height="8"
-                                                       row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="deployInfoComments"
-                                                    label="Comments"
-                                                    v-model="responses.deployInfoComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -268,7 +269,7 @@
     export default {
         data() {
             return {
-                surveyName: 'Camp Survey',
+                surveyName: 'Exit Survey',
                 step: 1, 
                 responses: {
                     grade: '',
@@ -279,14 +280,14 @@
                     deployedPreviously: '',
                     supportedPreviously: '',
                     planningAttendance: '',
-                    skillSets: '',
-                    skillSetsComments: '',
+                    deployAbility: '',
+                    deployAbilityComments: '',
+                    conductingForeign: '',
+                    conductingForeignComments: '',
                     training: '',
                     trainingComments: '',
                     deployedEnv: '',
                     deployedEnvComments: '',
-                    deployInfo: '',
-                    deployInfoComments: ''
                 },
                 grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','O1','O2','O3','O4','O5','O6'],
             }
@@ -297,7 +298,7 @@
         methods: {
             submit: function() {
                 console.log(this.responses)
-                axios.post("http://localhost:5005/api/submitCampSurvey", this.responses)
+                axios.post("http://localhost:5005/api/submitExitSurvey", this.responses)
                 .then((res) => {
                     console.log(res)
                     if (res) {

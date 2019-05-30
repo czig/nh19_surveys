@@ -7,6 +7,7 @@
                 <v-btn flat to="/" router>Home</v-btn> 
                 <v-btn flat to="/entrySurvey" router>Entry Survey</v-btn> 
                 <v-btn flat to="/campSurvey" router>Camp Survey</v-btn> 
+                <v-btn flat to="/exitSurvey" router>Exit Survey</v-btn> 
             </v-toolbar-items>
         </v-toolbar>
         <main>

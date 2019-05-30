@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import ioSurvey from '@/components/ioSurvey'
 import entrySurvey from '@/components/entrySurvey'
 import campSurvey from '@/components/campSurvey'
+import exitSurvey from '@/components/exitSurvey'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/campSurvey',
       name: 'campSurvey',
       component: campSurvey
+    },
+    {
+      path: '/exitSurvey',
+      name: 'exitSurvey',
+      component: exitSurvey
     }
   ]
 })
