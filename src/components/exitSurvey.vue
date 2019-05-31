@@ -42,17 +42,6 @@
                         <v-form>
                             <v-container>
                                 <span class="title">Demographics</span>
-                                <v-layout row>
-                                    <!--question 1-->
-                                    <v-flex xs12>
-                                        <v-select :items="grades"
-                                                  label="Grade"
-                                                  hint="Please select your grade."
-                                                  persistent-hint
-                                                  v-model="responses.grade">
-                                        </v-select>
-                                    </v-flex>
-                                </v-layout>
                                 <v-layout row mb-0 pb-0>
                                     <!--question 2-->
                                     <v-flex xs12 mb-0 pb-0>
@@ -64,6 +53,17 @@
                                             <v-radio label="Marines" value="Marines"></v-radio> 
                                             <v-radio label="Navy" value="Navy"></v-radio> 
                                         </v-radio-group>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <!--question 1-->
+                                    <v-flex xs12>
+                                        <v-select :items="grades"
+                                                  label="Grade"
+                                                  hint="Please select your grade."
+                                                  persistent-hint
+                                                  v-model="responses.grade">
+                                        </v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row my-0 py-0>
@@ -672,7 +672,7 @@
                     professionalRelationshipsComments: '',
                     additionalComments: '',
                 },
-                grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','O1','O2','O3','O4','O5','O6'],
+                grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','W01','CW2','CW3','CW4','CW5','O1','O2','O3','O4','O5','O6'],
             }
         },
         components: {
