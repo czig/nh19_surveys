@@ -28,7 +28,7 @@
                     <!--navigation buttons-->
                     <v-layout row>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="step = 2">Continue</v-btn>
+                        <v-btn color="primary" @click="goToStep(2)">Continue</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--survey here-->
@@ -37,17 +37,6 @@
                         <v-form>
                             <v-container>
                                 <span class="title">Demographic Information</span>
-                                <v-layout row>
-                                    <!--question 1-->
-                                    <v-flex xs12>
-                                        <v-select :items="grades"
-                                                  label="Grade"
-                                                  hint="Please select your grade."
-                                                  persistent-hint
-                                                  v-model="responses.grade">
-                                        </v-select>
-                                    </v-flex>
-                                </v-layout>
                                 <v-layout row mb-0 pb-0>
                                     <!--question 2-->
                                     <v-flex xs12 mb-0 pb-0>
@@ -59,6 +48,17 @@
                                             <v-radio label="Marines" value="Marines"></v-radio> 
                                             <v-radio label="Navy" value="Navy"></v-radio> 
                                         </v-radio-group>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <!--question 1-->
+                                    <v-flex xs12>
+                                        <v-select :items="grades"
+                                                  label="Grade"
+                                                  hint="Please select your grade."
+                                                  persistent-hint
+                                                  v-model="responses.grade">
+                                        </v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row my-0 py-0>
@@ -137,7 +137,7 @@
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="step = 3">Continue</v-btn>
+                        <v-btn color="primary" @click="goToStep(3)">Continue</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--assessment info step-->
@@ -146,11 +146,15 @@
                         <v-form>
                             <v-container>
                                 <span class="title">Assessment Information</span>
+                                <br>
+                                <div class="subheading">
+                                    Please state how strongly you agree or disagree with the following statements.
+                                </div>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
                                     <v-flex xs12>
-                                        <div class="subheading" mt-3 mb-0 pb-0>I have the right skill sets to execute the mission.</div>
-                                        <v-radio-group v-model="responses.skillSets"
+                                        <div class="subheading" mt-3 mb-0 pb-0>I feel that my skillsets are being properly utilized to execute the mission.</div>
+                                        <v-radio-group v-model="responses.utilization"
                                                        height="8"
                                                        row>
                                             <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
@@ -163,9 +167,32 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="skillSetsComments"
+                                                    name="utilizationComments"
                                                     label="Comments"
-                                                    v-model="responses.skillSetsComments">
+                                                    v-model="responses.utilizationComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The deployed environment empowers me to execute the mission.</p>
+                                        <v-radio-group v-model="responses.deployedEnv"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="deployedEnvComments"
+                                                    label="Comments"
+                                                    v-model="responses.deployedEnvComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -195,8 +222,8 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployed environment enhances my ability to execute the mission.</p>
-                                        <v-radio-group v-model="responses.deployedEnv"
+                                        <p class="subheading" mt-3 mb-0>I have been given the right equipment and resources in a timely manner.</p>
+                                        <v-radio-group v-model="responses.timelyEquipment"
                                                        height="8"
                                                        row>
                                             <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
@@ -209,17 +236,17 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="deployedEnvComments"
+                                                    name="timelyEquipmentComments"
                                                     label="Comments"
-                                                    v-model="responses.deployedEnvComments">
+                                                    v-model="responses.timelyEquipmentComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout wrap row my-0 py-0>
+                                <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployment information I was given is clear, concise, and easy to follow.</p>
-                                        <v-radio-group v-model="responses.deployInfo"
+                                        <p class="subheading" mt-3 mb-0>I have been given all of the equipment and resources that I need to complete my assigned tasks.</p>
+                                        <v-radio-group v-model="responses.neededEquipment"
                                                        height="8"
                                                        row>
                                             <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
@@ -232,9 +259,83 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="deployInfoComments"
+                                                    name="neededEquipmentComments"
                                                     label="Comments"
-                                                    v-model="responses.deployInfoComments">
+                                                    v-model="responses.neededEquipmentComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Rate the overall quality of the planning for New Horizons.</p>
+                                        <v-radio-group v-model="responses.planningRating"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="1 (Horrible)" value="1"></v-radio> 
+                                            <v-radio label="2" value="2"></v-radio> 
+                                            <v-radio label="3" value="3"></v-radio> 
+                                            <v-radio label="4" value="4"></v-radio> 
+                                            <v-radio label="5" value="5"></v-radio> 
+                                            <v-radio label="6" value="6"></v-radio> 
+                                            <v-radio label="7" value="7"></v-radio> 
+                                            <v-radio label="8" value="8"></v-radio> 
+                                            <v-radio label="9" value="9"></v-radio> 
+                                            <v-radio label="10 (Perfect)" value="10"></v-radio> 
+
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="planningRatingComments"
+                                                    label="Comments"
+                                                    v-model="responses.planningRatingComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>The provided communication networks have been sufficient to accomplish the tasks I have been assigned.</p>
+                                        <v-radio-group v-model="responses.commNetworks"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="commNetworksComments"
+                                                    label="Comments"
+                                                    v-model="responses.commNetworksComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I have been able to communicate effectively, both within the Task Force and to outside organizations.</p>
+                                        <v-radio-group v-model="responses.communicate"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
+                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
+                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
+                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
+                                            <v-radio label="Agree" value="Agree"></v-radio> 
+                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="communicateComments"
+                                                    label="Comments"
+                                                    v-model="responses.communicateComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -279,16 +380,24 @@
                     deployedPreviously: '',
                     supportedPreviously: '',
                     planningAttendance: '',
-                    skillSets: '',
-                    skillSetsComments: '',
+                    utilization: '',
+                    utilizationComments: '',
                     training: '',
                     trainingComments: '',
                     deployedEnv: '',
                     deployedEnvComments: '',
-                    deployInfo: '',
-                    deployInfoComments: ''
+                    timelyEquipment: '',
+                    timelyEquipmentComments: '',
+                    neededEquipment: '',
+                    neededEquipmentComments: '',
+                    planningRating: '',
+                    planningRatingComments: '',
+                    commNetworks: '',
+                    commNetworksComments: '',
+                    communicate: '',
+                    communicateComments: '',
                 },
-                grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','O1','O2','O3','O4','O5','O6'],
+                grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','W01','CW2','CW3','CW4','CW5','O1','O2','O3','O4','O5','O6'],
             }
         },
         components: {
@@ -310,7 +419,12 @@
                     alert('Something went wrong trying to send data to server. Please try again')
                 })
 
-            } 
+            }, 
+            goToStep: function(step) {
+                //scroll to top of page
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                this.step = step
+            }
         }
     }
 </script>
