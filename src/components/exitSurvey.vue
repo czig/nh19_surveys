@@ -150,7 +150,11 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <span class="title">Assessment</span>
+                                <div class="title" mb-1>Assessment</div>
+                                <br>
+                                <div class="subheading">
+                                    Please state how strongly you agree or disagree with the following statements.
+                                </div>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
                                     <v-flex xs12>
@@ -389,7 +393,7 @@
                                         <v-radio-group v-model="responses.planningRating"
                                                        height="8"
                                                        row>
-                                            <v-radio label="1 (Worst)" value="1"></v-radio> 
+                                            <v-radio label="1 (Horrible)" value="1"></v-radio> 
                                             <v-radio label="2" value="2"></v-radio> 
                                             <v-radio label="3" value="3"></v-radio> 
                                             <v-radio label="4" value="4"></v-radio> 
@@ -398,7 +402,7 @@
                                             <v-radio label="7" value="7"></v-radio> 
                                             <v-radio label="8" value="8"></v-radio> 
                                             <v-radio label="9" value="9"></v-radio> 
-                                            <v-radio label="10 (Best)" value="10"></v-radio> 
+                                            <v-radio label="10 (Perfect)" value="10"></v-radio> 
 
                                         </v-radio-group>
                                     </v-flex>
@@ -602,7 +606,7 @@
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="submit">Submit</v-btn>
+                        <v-btn color="success" @click="submit">Submit</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--completion step-->
