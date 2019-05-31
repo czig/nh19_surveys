@@ -656,6 +656,8 @@
                     timelyEquipmentComments: '',
                     neededEquipment: '',
                     neededEquipmentComments: '',
+                    planningRating: '',
+                    planningRatingComments: '',
                     commNetworks: '',
                     commNetworksComments: '',
                     communicate: '',
@@ -683,7 +685,7 @@
                 .then((res) => {
                     console.log(res)
                     if (res) {
-                        this.step = 4  
+                        this.step = 6  
                     } else {
                         alert('Something went wrong trying to send data to server. Please try again')
                     }
@@ -694,11 +696,6 @@
 
             },
             goToStep: function(step) {
-                var options = {
-                    duration: 500,
-                    offset: 0,
-                    easing: 'easeInOutCubic'
-                }
                 //scroll to top of page
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 this.step = step
