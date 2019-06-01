@@ -162,12 +162,7 @@
                                         <v-radio-group v-model="responses.deployAbility"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -185,12 +180,7 @@
                                         <v-radio-group v-model="responses.conductingForeign"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -208,12 +198,7 @@
                                         <v-radio-group v-model="responses.otherServices"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -231,12 +216,7 @@
                                         <v-radio-group v-model="responses.partnerNation"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                             <v-radio label="N/A" value="NA"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
@@ -255,12 +235,7 @@
                                         <v-radio-group v-model="responses.knowledge"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -278,12 +253,7 @@
                                         <v-radio-group v-model="responses.utilization"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -301,12 +271,7 @@
                                         <v-radio-group v-model="responses.training"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -320,23 +285,36 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployed environment empowered me to execute the mission.</p>
-                                        <v-radio-group v-model="responses.deployedEnv"
+                                        <p class="subheading" mt-3 mb-0>I am satisfied with the living conditions in my deployed location.</p>
+                                        <v-radio-group v-model="responses.livingConditions"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="deployedEnvComments"
+                                                    name="livingConditionsComments"
                                                     label="Comments"
-                                                    v-model="responses.deployedEnvComments">
+                                                    v-model="responses.livingConditionsComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, and/or spiritual health needs were satisfied in my deployed location.</p>
+                                        <v-radio-group v-model="responses.healthNeeds"
+                                                       height="8"
+                                                       row>
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="healthNeedsComments"
+                                                    label="Comments"
+                                                    v-model="responses.healthNeedsComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -347,12 +325,7 @@
                                         <v-radio-group v-model="responses.timelyEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -370,12 +343,7 @@
                                         <v-radio-group v-model="responses.neededEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -421,12 +389,7 @@
                                         <v-radio-group v-model="responses.commNetworks"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -444,12 +407,7 @@
                                         <v-radio-group v-model="responses.communicate"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -654,8 +612,10 @@
                     utilizationComments: '',
                     training: '',
                     trainingComments: '',
-                    deployedEnv: '',
-                    deployedEnvComments: '',
+                    livingConditions: '',
+                    livingConditionsComments: '',
+                    healthNeeds: '',
+                    healthNeedsComments: '',
                     timelyEquipment: '',
                     timelyEquipmentComments: '',
                     neededEquipment: '',
@@ -677,6 +637,7 @@
                     additionalComments: '',
                 },
                 grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','W01','CW2','CW3','CW4','CW5','O1','O2','O3','O4','O5','O6'],
+                likertScale: ['Strongly Disagree','Disagree','Slightly Disagree','Slightly Agree','Agree','Strongly Agree']
             }
         },
         components: {
