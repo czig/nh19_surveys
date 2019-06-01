@@ -150,14 +150,14 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <div class="title" mb-1>Assessment</div>
+                                <span class="title">Assessment</span>
                                 <br>
                                 <div class="subheading">
                                     Please state how strongly you agree or disagree with the following statements.
                                 </div>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
-                                    <v-flex xs12>
+                                    <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>This exercise improved my ability to deploy and return from deployments.</div>
                                         <v-radio-group v-model="responses.deployAbility"
                                                        height="8"

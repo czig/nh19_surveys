@@ -7,9 +7,9 @@
             <v-stepper-header>
                 <v-stepper-step :complete="step > 1" step="1">Instructions</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step :complete="step > 2" step="2">Demographic Information</v-stepper-step> 
+                <v-stepper-step :complete="step > 2" step="2">Demographics</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step :complete="step > 3" step="3">Assessment Information</v-stepper-step> 
+                <v-stepper-step :complete="step > 3" step="3">Assessment</v-stepper-step> 
                 <v-divider></v-divider>
                 <v-stepper-step :complete="step > 4" step="4">Additional Comments</v-stepper-step> 
                 <v-divider></v-divider>
@@ -38,7 +38,7 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <span class="title">Demographic Information</span>
+                                <span class="title">Demographics</span>
                                 <v-layout row mb-0 pb-0>
                                     <!--question 2-->
                                     <v-flex xs12 mb-0 pb-0>
@@ -147,14 +147,14 @@
                     <v-layout row>
                         <v-form>
                             <v-container>
-                                <span class="title">Assessment Information</span>
+                                <span class="title">Assessment</span>
                                 <br>
                                 <div class="subheading">
                                     Please state how strongly you agree or disagree with the following statements.
                                 </div>
                                 <v-layout row wrap mt-2 pt-2 mb-0 pb-0>
                                     <!--question 5-->
-                                    <v-flex xs12>
+                                    <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>I feel that my skillsets are being properly utilized to execute the mission.</div>
                                         <v-radio-group v-model="responses.utilization"
                                                        height="8"
