@@ -159,7 +159,7 @@
                                         <v-radio-group v-model="responses.utilization"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                             
                                         </v-radio-group>
                                     </v-flex>
@@ -178,7 +178,7 @@
                                         <v-radio-group v-model="responses.training"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -196,7 +196,7 @@
                                         <v-radio-group v-model="responses.livingConditions"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -214,7 +214,7 @@
                                         <v-radio-group v-model="responses.healthNeeds"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -232,7 +232,7 @@
                                         <v-radio-group v-model="responses.timelyEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -250,7 +250,7 @@
                                         <v-radio-group v-model="responses.neededEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -296,7 +296,7 @@
                                         <v-radio-group v-model="responses.commNetworks"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -314,7 +314,7 @@
                                         <v-radio-group v-model="responses.communicate"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>

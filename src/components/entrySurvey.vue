@@ -168,7 +168,7 @@
                                         <v-radio-group v-model="responses.homeSupport"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                             
                                         </v-radio-group>
                                     </v-flex>
@@ -187,7 +187,7 @@
                                         <v-radio-group v-model="responses.afsouthSupport"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                             
                                         </v-radio-group>
                                     </v-flex>
@@ -206,7 +206,7 @@
                                         <v-radio-group v-model="responses.adequateTime"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                             
                                         </v-radio-group>
                                     </v-flex>
@@ -225,7 +225,7 @@
                                         <v-radio-group v-model="responses.deployInfo"
                                                        height="8"
                                                        row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
