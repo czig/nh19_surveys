@@ -11,7 +11,9 @@
                 <v-divider></v-divider>
                 <v-stepper-step :complete="step > 3" step="3">Assessment Information</v-stepper-step> 
                 <v-divider></v-divider>
-                <v-stepper-step step="4">Complete</v-stepper-step> 
+                <v-stepper-step :complete="step > 4" step="4">Additional Comments</v-stepper-step> 
+                <v-divider></v-divider>
+                <v-stepper-step step="5">Complete</v-stepper-step> 
             </v-stepper-header>
             <v-stepper-items>
                 <!--begin-->
@@ -133,7 +135,7 @@
                             </v-container>  
                         </v-form>
                     </v-layout>
-                    <!--submit button-->
+                    <!--navigation buttons-->
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
@@ -157,12 +159,8 @@
                                         <v-radio-group v-model="responses.utilization"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                            
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -176,39 +174,11 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The deployed environment empowers me to execute the mission.</p>
-                                        <v-radio-group v-model="responses.deployedEnv"
-                                                       height="8"
-                                                       row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="deployedEnvComments"
-                                                    label="Comments"
-                                                    v-model="responses.deployedEnvComments">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout row wrap my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I have been properly trained to execute my assigned tasks.</p>
                                         <v-radio-group v-model="responses.training"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -222,16 +192,47 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I have been satisfied with the living conditions in my deployed location.</p>
+                                        <v-radio-group v-model="responses.livingConditions"
+                                                       height="8"
+                                                       row>
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="livingConditionsComments"
+                                                    label="Comments"
+                                                    v-model="responses.livingConditionsComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, and/or spiritual health needs have been satisfied in my deployed location.</p>
+                                        <v-radio-group v-model="responses.healthNeeds"
+                                                       height="8"
+                                                       row>
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="healthNeedsComments"
+                                                    label="Comments"
+                                                    v-model="responses.healthNeedsComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I have been given the right equipment and resources in a timely manner.</p>
                                         <v-radio-group v-model="responses.timelyEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -249,12 +250,7 @@
                                         <v-radio-group v-model="responses.neededEquipment"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -300,12 +296,7 @@
                                         <v-radio-group v-model="responses.commNetworks"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -323,12 +314,7 @@
                                         <v-radio-group v-model="responses.communicate"
                                                        height="8"
                                                        row>
-                                            <v-radio label="Strongly Disagree" value="Strongly Disagree"></v-radio> 
-                                            <v-radio label="Disagree" value="Disagree"></v-radio> 
-                                            <v-radio label="Slightly Disagree" value="Slightly Disagree"></v-radio> 
-                                            <v-radio label="Slightly Agree" value="Slightly Agree"></v-radio> 
-                                            <v-radio label="Agree" value="Agree"></v-radio> 
-                                            <v-radio label="Strongly Agree" value="Strongly Agree"></v-radio> 
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
@@ -342,6 +328,37 @@
                             </v-container>  
                         </v-form>
                     </v-layout>
+                    <!--navigation buttons-->
+                    <v-layout row>
+                        <v-btn color="warning" @click="step -= 1">Back</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" @click="goToStep(4)">Continue</v-btn>
+                    </v-layout>
+                </v-stepper-content>
+                <!--additional comments-->
+                <v-stepper-content step="4">
+                    <v-layout row>
+                        <v-form>
+                            <v-container>
+                                <span class="title">Additional Comments</span>
+                                <v-layout row wrap mt-2 pt-2 my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Do you have any additional comments?</p>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="additionalComments"
+                                                    label="Comments"
+                                                    v-model="responses.additionalComments">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout>
+                                </v-layout>
+                            </v-container>  
+                        </v-form>
+                    </v-layout>
                     <!--submit button-->
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
@@ -350,7 +367,7 @@
                     </v-layout>
                 </v-stepper-content>
                 <!--completion step-->
-                <v-stepper-content step="4">
+                <v-stepper-content step="5">
                     <thanks></thanks>
                     <v-layout row>
                         <v-spacer></v-spacer>
@@ -384,8 +401,10 @@
                     utilizationComments: '',
                     training: '',
                     trainingComments: '',
-                    deployedEnv: '',
-                    deployedEnvComments: '',
+                    livingConditions: '',
+                    livingConditionsComments: '',
+                    healthNeeds: '',
+                    healthNeedsComments: '',
                     timelyEquipment: '',
                     timelyEquipmentComments: '',
                     neededEquipment: '',
@@ -398,10 +417,12 @@
                     communicateComments: '',
                 },
                 grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','W01','CW2','CW3','CW4','CW5','O1','O2','O3','O4','O5','O6'],
+                likertScale: ['Strongly Disagree','Disagree','Slightly Disagree','Slightly Agree','Agree','Strongly Agree']
             }
         },
         components: {
-            'thanks': Thanks           
+            'thanks': Thanks,
+
         },
         methods: {
             submit: function() {
@@ -410,7 +431,7 @@
                 .then((res) => {
                     console.log(res)
                     if (res) {
-                        this.step = 4  
+                        this.step = 5  
                     } else {
                         alert('Something went wrong trying to send data to server. Please try again')
                     }
