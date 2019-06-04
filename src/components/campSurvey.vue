@@ -210,7 +210,7 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, and/or spiritual health needs have been satisfied in my deployed location.</p>
+                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, AND spiritual health needs have been satisfied in my deployed location.</p>
                                         <v-radio-group v-model="responses.healthNeeds"
                                                        height="8"
                                                        row>
