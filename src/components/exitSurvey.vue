@@ -202,6 +202,7 @@
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
+                                            <v-radio label="N/A" value="NA"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
