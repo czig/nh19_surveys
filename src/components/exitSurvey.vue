@@ -55,15 +55,20 @@
                                         </v-radio-group>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout row>
-                                    <!--question 1-->
-                                    <v-flex xs12>
-                                        <v-select :items="grades"
-                                                  label="Grade"
-                                                  hint="Please select your grade."
-                                                  persistent-hint
-                                                  v-model="responses.grade">
-                                        </v-select>
+                                <v-layout row my-0 py-0>
+                                    <!--question 3-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <v-radio-group v-model="responses.grade" 
+                                                       label="Grade/Rank: "
+                                                       column>
+                                            <v-radio label="E1-E4" value="E1-E4"></v-radio> 
+                                            <v-radio label="E5-E6" value="E5-E6"></v-radio> 
+                                            <v-radio label="E7-E9" value="E7-E9"></v-radio> 
+                                            <v-radio label="WO1-CW2" value="WO1-CW2"></v-radio>
+                                            <v-radio label="CW3-CW4" value="CW3-CW4"></v-radio>
+                                            <v-radio label="O1-O3" value="O1-O3"></v-radio>
+                                            <v-radio label="O4-O6" value="O4-O6"></v-radio>
+                                        </v-radio-group>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row my-0 py-0>
@@ -82,9 +87,7 @@
                                     <!--question 4-->
                                     <v-flex xs12 my-0 py-0>
                                         <v-radio-group v-model="responses.role"
-                                                       label="Role:"
-                                                       hint="Please select your role in New Horizons." 
-                                                       persistent-hint
+                                                       label="Role in New Horizons:"
                                                        column>
                                             <v-radio label="Medical" value="Medical"></v-radio> 
                                             <v-radio label="Engineering" value="Engineering"></v-radio> 
@@ -92,7 +95,7 @@
                                         </v-radio-group>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout row mt-4 pt-2>
+                                <v-layout row mt-2>
                                     <!--question 5-->
                                     <v-flex xs12>
                                         <v-text-field v-model="responses.daysAtExercise"
@@ -636,7 +639,6 @@
                     professionalRelationshipsComments: '',
                     additionalComments: '',
                 },
-                grades: ['E1','E2','E3','E4','E5','E6','E7','E8','E9','W01','CW2','CW3','CW4','CW5','O1','O2','O3','O4','O5','O6'],
                 likertScale: ['Strongly Disagree','Disagree','Slightly Disagree','Slightly Agree','Agree','Strongly Agree']
             }
         },
