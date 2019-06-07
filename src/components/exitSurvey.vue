@@ -45,7 +45,8 @@
                                 <v-layout row mb-0 pb-0>
                                     <!--question 2-->
                                     <v-flex xs12 mb-0 pb-0>
-                                        <v-radio-group v-model.lazy="responses.branch"
+                                        <v-radio-group  :value="responses.branch" 
+                                                        @change="v => responses.branch = v"
                                                        label="Branch of Service: "
                                                        column>
                                             <v-radio label="Air Force" value="Air Force"></v-radio> 
@@ -58,7 +59,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 3-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.grade" 
+                                        <v-radio-group  :value="responses.grade" 
+                                                        @change="v => responses.grade = v" 
                                                        label="Grade/Rank: "
                                                        column>
                                             <v-radio label="E1-E4" value="E1-E4"></v-radio> 
@@ -74,7 +76,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 3-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.status" 
+                                        <v-radio-group  :value="responses.status" 
+                                                        @change="v => responses.status = v" 
                                                        label="Status: "
                                                        column>
                                             <v-radio label="Active" value="Active"></v-radio> 
@@ -86,7 +89,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 4-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.role"
+                                        <v-radio-group  :value="responses.role" 
+                                                        @change="v => responses.role = v"
                                                        label="Role in New Horizons:"
                                                        column>
                                             <v-radio label="Medical" value="Medical"></v-radio> 
@@ -98,7 +102,8 @@
                                 <v-layout row mt-2>
                                     <!--question 5-->
                                     <v-flex xs12>
-                                        <v-text-field v-model.lazy="responses.daysAtExercise"
+                                        <v-text-field   :value="responses.daysAtExercise" 
+                                                        @change="v => responses.daysAtExercise = v"
                                                       label="Days in Country"
                                                       mask="###"
                                                       >
@@ -108,7 +113,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 6-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.deployedPreviously"
+                                        <v-radio-group  :value="responses.deployedPreviously" 
+                                                        @change="v => responses.deployedPreviously = v"
                                                        label="Have you deployed before?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -119,7 +125,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 7-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.supportedPreviously"
+                                        <v-radio-group :value="responses.supportedPreviously"
+                                                        @change="v => responses.supportedPreviously = v"
                                                        label="Have you supported other New Horizons exercises in the past?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -130,7 +137,8 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 7-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model.lazy="responses.planningAttendance"
+                                        <v-radio-group  :value="responses.planningAttendance" 
+                                                        @change="v => responses.planningAttendance = v"
                                                        label="Did you attend any of the planning Conferences?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -162,7 +170,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>This exercise improved my ability to deploy and return from deployments.</div>
-                                        <v-radio-group v-model.lazy="responses.deployAbility"
+                                        <v-radio-group  :value="responses.deployAbility" 
+                                                        @change="v => responses.deployAbility = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -172,7 +181,8 @@
                                         <v-textarea solo
                                                     name="deployAbilityComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.deployAbilityComments">
+                                                    :value="responses.deployAbilityComments" 
+                                                    @change="v => responses.deployAbilityComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -180,7 +190,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>Conducting this exercise in a foreign country improved my training/skill development more than a similar exercise in the United States.</p>
-                                        <v-radio-group v-model.lazy="responses.conductingForeign"
+                                        <v-radio-group  :value="responses.conductingForeign" 
+                                                        @change="v => responses.conductingForeign = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -190,7 +201,8 @@
                                         <v-textarea solo
                                                     name="conductingForeignComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.conductingForeignComments">
+                                                    :value="responses.conductingForeignComments"
+                                                    @change="v => responses.conductingForeignComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -198,7 +210,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>This exercise improved my ability to work with other services.</p>
-                                        <v-radio-group v-model.lazy="responses.otherServices"
+                                        <v-radio-group  :value="responses.otherServices" 
+                                                        @change="v => responses.otherServices = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -209,7 +222,8 @@
                                         <v-textarea solo
                                                     name="otherServicesComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.otherServicesComments">
+                                                    :value="responses.otherServicesComments"
+                                                    @change="v => responses.otherServicesComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -217,7 +231,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>This exercise improved my ability to work with partner nation forces.</p>
-                                        <v-radio-group v-model.lazy="responses.partnerNation"
+                                        <v-radio-group  :value="responses.partnerNation" 
+                                                        @change="v => responses.partnerNation = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -228,7 +243,8 @@
                                         <v-textarea solo
                                                     name="partnerNationComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.partnerNationComments">
+                                                    :value="responses.partnerNationComments"
+                                                    @change="v => responses.partnerNationComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -236,7 +252,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>This exercise enhanced my military knowledge, skills, and/or abilities.</p>
-                                        <v-radio-group v-model.lazy="responses.knowledge"
+                                        <v-radio-group  :value="responses.knowledge" 
+                                                        @change="v => responses.knowledge = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -246,7 +263,8 @@
                                         <v-textarea solo
                                                     name="knowledgeComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.knowledgeComments">
+                                                    :value="responses.knowledgeComments"
+                                                    @change="v => responses.knowledgeComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -254,7 +272,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I feel that my skillsets were properly utilized to execute the mission.</p>
-                                        <v-radio-group v-model.lazy="responses.utilization"
+                                        <v-radio-group  :value="responses.utilization" 
+                                                        @change="v => responses.utilization = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -264,7 +283,8 @@
                                         <v-textarea solo
                                                     name="utilizationComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.utilizationComments">
+                                                    :value="responses.utilizationComments"
+                                                    @change="v => responses.utilizationComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -272,7 +292,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I was properly trained to execute my assigned tasks.</p>
-                                        <v-radio-group v-model.lazy="responses.training"
+                                        <v-radio-group  :value="responses.training" 
+                                                        @change="v => responses.training = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -282,7 +303,8 @@
                                         <v-textarea solo
                                                     name="trainingComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.trainingComments">
+                                                    :value="responses.trainingComments"
+                                                    @change="v => responses.trainingComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -290,7 +312,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I am satisfied with the living conditions in my deployed location.</p>
-                                        <v-radio-group v-model.lazy="responses.livingConditions"
+                                        <v-radio-group  :value="responses.livingConditions" 
+                                                        @change="v => responses.livingConditions = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -300,7 +323,8 @@
                                         <v-textarea solo
                                                     name="livingConditionsComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.livingConditionsComments">
+                                                    :value="responses.livingConditionsComments"
+                                                    @change="v => responses.livingConditionsComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -308,7 +332,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>My mental, physical, social, AND spiritual health needs were satisfied in my deployed location.</p>
-                                        <v-radio-group v-model.lazy="responses.healthNeeds"
+                                        <v-radio-group  :value="responses.healthNeeds" 
+                                                        @change="v => responses.healthNeeds = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -318,7 +343,8 @@
                                         <v-textarea solo
                                                     name="healthNeedsComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.healthNeedsComments">
+                                                    :value="responses.healthNeedsComments"
+                                                    @change="v => responses.healthNeedsComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -326,7 +352,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I was given the right equipment and resources in a timely manner.</p>
-                                        <v-radio-group v-model.lazy="responses.timelyEquipment"
+                                        <v-radio-group  :value="responses.timelyEquipment" 
+                                                        @change="v => responses.timelyEquipment = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -336,7 +363,8 @@
                                         <v-textarea solo
                                                     name="timelyEquipmentComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.timelyEquipmentComments">
+                                                    :value="responses.timelyEquipmentComments"
+                                                    @change="v => responses.timelyEquipmentComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -344,7 +372,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I was given all of the equipment and resources I needed to complete my assigned tasks.</p>
-                                        <v-radio-group v-model.lazy="responses.neededEquipment"
+                                        <v-radio-group  :value="responses.neededEquipment" 
+                                                        @change="v => responses.neededEquipment = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -354,7 +383,8 @@
                                         <v-textarea solo
                                                     name="neededEquipmentComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.neededEquipmentComments">
+                                                    :value="responses.neededEquipmentComments"
+                                                    @change="v => responses.neededEquipmentComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -362,7 +392,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>Rate the overall quality of the planning for New Horizons.</p>
-                                        <v-radio-group v-model.lazy="responses.planningRating"
+                                        <v-radio-group  :value="responses.planningRating" 
+                                                        @change="v => responses.planningRating = v"
                                                        height="8"
                                                        row>
                                             <v-radio label="1 (Horrible)" value="1"></v-radio> 
@@ -382,7 +413,8 @@
                                         <v-textarea solo
                                                     name="planningRatingComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.planningRatingComments">
+                                                    :value="responses.planningRatingComments"
+                                                    @change="v => responses.planningRatingComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -390,7 +422,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The provided communication networks were sufficient to accomplish the tasks I was assigned.</p>
-                                        <v-radio-group v-model.lazy="responses.commNetworks"
+                                        <v-radio-group  :value="responses.commNetworks" 
+                                                        @change="v => responses.commNetworks = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -400,7 +433,8 @@
                                         <v-textarea solo
                                                     name="commNetworksComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.commNetworksComments">
+                                                    :value="responses.commNetworksComments"
+                                                    @change="v => responses.commNetworksComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -408,7 +442,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I was able to communicate effectively, both within the Task Force and to outside organizations.</p>
-                                        <v-radio-group v-model.lazy="responses.communicate"
+                                        <v-radio-group  :value="responses.communicate" 
+                                                        @change="v => responses.communicate = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -418,7 +453,8 @@
                                         <v-textarea solo
                                                     name="communicateComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.communicateComments">
+                                                    :value="responses.communicateComments"
+                                                    @change="v => responses.communicateComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -442,7 +478,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The social exchanges I had with the Guyanese were generally...</p>
-                                        <v-radio-group v-model.lazy="responses.socialExchanges"
+                                        <v-radio-group  :value="responses.socialExchanges" 
+                                                        @change="v => responses.socialExchanges = v"
                                                        height="8"
                                                        row>
                                             <v-radio label="All Negative" value="All Negative"></v-radio> 
@@ -457,7 +494,8 @@
                                         <v-textarea solo
                                                     name="socialExchangesComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.socialExchangesComments">
+                                                    :value="responses.socialExchangesComments"
+                                                    @change="v => responses.socialExchangesComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -465,7 +503,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The professional exchanges I had with the Guyanese were generally...</p>
-                                        <v-radio-group v-model.lazy="responses.professionalExchanges"
+                                        <v-radio-group  :value="responses.professionalExchanges" 
+                                                        @change="v => responses.professionalExchanges = v"
                                                        height="8"
                                                        row>
                                             <v-radio label="All Negative" value="All Negative"></v-radio> 
@@ -480,7 +519,8 @@
                                         <v-textarea solo
                                                     name="professionalExchangesComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.professionalExchangesComments">
+                                                    :value="responses.professionalExchangesComments"
+                                                    @change="v => responses.professionalExchangesComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -488,7 +528,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The social relationships I had with the Guyanese were generally...</p>
-                                        <v-radio-group v-model.lazy="responses.socialRelationships"
+                                        <v-radio-group  :value="responses.socialRelationships" 
+                                                        @change="v => responses.socialRelationships = v"
                                                        height="8"
                                                        row>
                                             <v-radio label="All Negative" value="All Negative"></v-radio> 
@@ -503,7 +544,8 @@
                                         <v-textarea solo
                                                     name="socialRelationshipsComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.socialRelationshipsComments">
+                                                    :value="responses.socialRelationshipsComments"
+                                                    @change="v => responses.socialRelationshipsComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -511,7 +553,8 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The professional relationships I had with the Guyanese were generally...</p>
-                                        <v-radio-group v-model.lazy="responses.professionalRelationships"
+                                        <v-radio-group  :value="responses.professionalRelationships" 
+                                                        @change="v => responses.professionalRelationships = v"
                                                        height="8"
                                                        row>
                                             <v-radio label="All Negative" value="All Negative"></v-radio> 
@@ -526,7 +569,8 @@
                                         <v-textarea solo
                                                     name="professionalRelationshipsComments"
                                                     label="Comments"
-                                                    v-model.lazy="responses.professionalRelationshipsComments">
+                                                    :value="responses.professionalRelationshipsComments"
+                                                    @change="v => responses.professionalRelationshipsComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -555,7 +599,8 @@
                                         <v-textarea solo
                                                     name="additionalComments"
                                                     label="Comments"
-                                                    v-model="responses.additionalComments">
+                                                    :value="responses.additionalComments"
+                                                    @change="v => responses.additionalComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
