@@ -42,7 +42,7 @@
                                 <v-layout row mb-0 pb-0>
                                     <!--question 2-->
                                     <v-flex xs12 mb-0 pb-0>
-                                        <v-radio-group v-model="responses.branch"
+                                        <v-radio-group v-model.lazy="responses.branch"
                                                        label="Branch of Service: "
                                                        column>
                                             <v-radio label="Air Force" value="Air Force"></v-radio> 
@@ -55,7 +55,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 3-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.grade" 
+                                        <v-radio-group v-model.lazy="responses.grade" 
                                                        label="Grade/Rank: "
                                                        column>
                                             <v-radio label="E1-E4" value="E1-E4"></v-radio> 
@@ -71,7 +71,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 3-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.status" 
+                                        <v-radio-group v-model.lazy="responses.status" 
                                                        label="Status: "
                                                        column>
                                             <v-radio label="Active" value="Active"></v-radio> 
@@ -83,7 +83,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 4-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.role"
+                                        <v-radio-group v-model.lazy="responses.role"
                                                        label="Role in New Horizons:"
                                                        column>
                                             <v-radio label="Medical" value="Medical"></v-radio> 
@@ -95,7 +95,7 @@
                                 <v-layout row mt-2>
                                     <!--question 5-->
                                     <v-flex xs12>
-                                        <v-text-field v-model="responses.daysAtExercise"
+                                        <v-text-field v-model.lazy="responses.daysAtExercise"
                                                       label="How many days will you be in Guyana?"
                                                       mask="###"
                                                       >
@@ -105,7 +105,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 6-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.deployedPreviously"
+                                        <v-radio-group v-model.lazy="responses.deployedPreviously"
                                                        label="Have you deployed before?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -116,7 +116,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 7-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.supportedPreviously"
+                                        <v-radio-group v-model.lazy="responses.supportedPreviously"
                                                        label="Have you supported other New Horizons exercises in the past?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -127,7 +127,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 7-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-radio-group v-model="responses.planningAttendance"
+                                        <v-radio-group v-model.lazy="responses.planningAttendance"
                                                        label="Did you attend any of the planning Conferences?"
                                                        column>
                                             <v-radio label="Yes" value="Yes"></v-radio> 
@@ -138,7 +138,7 @@
                                 <v-layout row my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <v-text-field v-model="responses.religiousPreference"
+                                        <v-text-field v-model.lazy="responses.religiousPreference"
                                                       label="Religious Preference"
                                                       >
                                         </v-text-field>
@@ -168,7 +168,7 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>I was adequately supported by my home station unit to deploy.</div>
-                                        <v-radio-group v-model="responses.homeSupport"
+                                        <v-radio-group v-model.lazy="responses.homeSupport"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -179,7 +179,7 @@
                                         <v-textarea solo
                                                     name="homeSupportComments"
                                                     label="Comments"
-                                                    v-model="responses.homeSupportComments">
+                                                    v-model.lazy="responses.homeSupportComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -187,7 +187,7 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>I was adequately supported by USSOUTHCOM/AFSOUTH to deploy.</div>
-                                        <v-radio-group v-model="responses.afsouthSupport"
+                                        <v-radio-group v-model.lazy="responses.afsouthSupport"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -198,7 +198,7 @@
                                         <v-textarea solo
                                                     name="afsouthSupportComments"
                                                     label="Comments"
-                                                    v-model="responses.afsouthSupportComments">
+                                                    v-model.lazy="responses.afsouthSupportComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -206,7 +206,7 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <div class="subheading" mt-3 mb-0 pb-0>I received adequate time to accomplish all pre-deployment requirements prior to my departure from my home station.</div>
-                                        <v-radio-group v-model="responses.adequateTime"
+                                        <v-radio-group v-model.lazy="responses.adequateTime"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -217,7 +217,7 @@
                                         <v-textarea solo
                                                     name="adequateTimeComments"
                                                     label="Comments"
-                                                    v-model="responses.adequateTimeComments">
+                                                    v-model.lazy="responses.adequateTimeComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -225,7 +225,7 @@
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>The deployment information I received was clear, concise, and easy to follow.</p>
-                                        <v-radio-group v-model="responses.deployInfo"
+                                        <v-radio-group v-model.lazy="responses.deployInfo"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -235,7 +235,7 @@
                                         <v-textarea solo
                                                     name="deployInfoComments"
                                                     label="Comments"
-                                                    v-model="responses.deployInfoComments">
+                                                    v-model.lazy="responses.deployInfoComments">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
