@@ -102,6 +102,7 @@
                                         <v-text-field :value="responses.daysAtExercise"
                                                         @change="v => responses.daysAtExercise = v"
                                                       label="How many days will you be in Guyana?"
+                                                      placeholder="Enter number of days in country"
                                                       mask="###"
                                                       >
                                         </v-text-field>
@@ -325,7 +326,7 @@
                     branch: '',
                     status: '',
                     role: '',
-                    daysAtExercise: 0,
+                    daysAtExercise: null,
                     deployedPreviously: '',
                     supportedPreviously: '',
                     planningAttendance: '',
