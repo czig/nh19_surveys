@@ -102,7 +102,6 @@
                                         <v-text-field :value="responses.daysAtExercise"
                                                         @change="v => responses.daysAtExercise = v"
                                                       label="Days in Country"
-                                                      placeholder="Enter number of days in country"
                                                       mask="###"
                                                       >
                                         </v-text-field>
@@ -424,7 +423,7 @@
                     branch: '',
                     status: '',
                     role: '',
-                    daysAtExercise: null,
+                    daysAtExercise: 0,
                     deployedPreviously: '',
                     supportedPreviously: '',
                     planningAttendance: '',
