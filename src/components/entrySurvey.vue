@@ -256,6 +256,26 @@
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I thoroughly read the reporting instructions.</p>
+                                        <v-radio-group :value="responses.readInstructions"
+                                                        @change="v => responses.readInstructions = v"
+                                                       height="8"
+                                                       row>
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="readInstructionsComments"
+                                                    label="Comments"
+                                                    :value="responses.readInstructionsComments"
+                                                    @change="v => responses.readInstructionsComments = v">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
                             </v-container>  
                         </v-form>
                     </v-layout>
@@ -338,6 +358,8 @@
                     adequateTimeComments: '',
                     deployInfo: '',
                     deployInfoComments: '',
+                    readInstructions: '',
+                    readInstructionsComments: '',
                     additionalComments: ''
                 },
                 likertScale: ['Strongly Disagree','Disagree','Slightly Disagree','Slightly Agree','Agree','Strongly Agree']
