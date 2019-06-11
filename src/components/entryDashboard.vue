@@ -174,9 +174,10 @@ export default {
                 "Strongly Disagree": 1,
                 "Disagree": 2,
                 "Slightly Disagree": 3,
-                "Slightly Agree": 4,
-                "Agree": 5,
-                "Strongly Agree": 6
+                "Neutral": 4,
+                "Slightly Agree": 5,
+                "Agree": 6,
+                "Strongly Agree": 7
             } 
         }
     },
@@ -208,6 +209,12 @@ export default {
             }) 
             dc.redrawAll()
         },
+        handleNoResponse: function(element) {
+            return element || 'No Response';   
+        },
+        noResponseOrdering: function(element) {
+            return element.key === 'No Response' ? 'ZZZ' : element.key;   
+        },
         drawCharts: function() {
             var count = this.ndx.groupAll().reduceCount();
             var countND = dc.numberDisplay("#count")
@@ -220,8 +227,8 @@ export default {
 
 
             var gradeChart = dc.barChart('#grade-barchart')
-            var gradeMargins = {top: 10, right: 10, bottom: 40, left: 40}
-            var gradeDim = this.ndx.dimension(d => d.grade)
+            var gradeMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var gradeDim = this.ndx.dimension(d => this.handleNoResponse(d.grade))
             var gradeGroup = gradeDim.group().reduceCount();
             gradeChart
             .dimension(gradeDim)
@@ -233,14 +240,18 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var branchChart = dc.barChart('#branch-barchart')
             var branchMargins = {top: 10, right: 10, bottom: 40, left: 40}
-            var branchDim = this.ndx.dimension(d => d.branch)
+            var branchDim = this.ndx.dimension(d => {
+                return d.branch || 'No Response';
+            })
             var branchGroup = branchDim.group().reduceCount();
             branchChart
             .height(200)
@@ -253,9 +264,11 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var statusChart = dc.barChart('#status-barchart')
@@ -273,14 +286,16 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var roleChart = dc.barChart('#role-barchart')
-            var roleMargins = {top: 10, right: 10, bottom: 50, left: 40}
-            var roleDim = this.ndx.dimension(d => d.role)
+            var roleMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var roleDim = this.ndx.dimension(d => this.handleNoResponse(d.role))
             var roleGroup = roleDim.group().reduceCount();
             roleChart
             .height(275)
@@ -293,9 +308,11 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,16)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var daysChart = dc.barChart('#days-barchart')
@@ -307,7 +324,7 @@ export default {
             .dimension(daysDim)
             .group(daysGroup)
             .margins(daysMargins)
-            .x(d3.scaleLinear().domain([0,200]))
+            .x(d3.scaleLinear().domain([0,d3.max(this.data, d => d.daysAtExercise) + 10]))
             .xUnits(dc.units.integers)
             .brushOn(true)
             .elasticY(true)
@@ -315,8 +332,8 @@ export default {
             .controlsUseVisibility(true);
 
             var deployedChart = dc.barChart('#deployed-barchart')
-            var deployedMargins = {top: 10, right: 10, bottom: 50, left: 40}
-            var deployedDim = this.ndx.dimension(d => d.deployedPreviously)
+            var deployedMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var deployedDim = this.ndx.dimension(d => this.handleNoResponse(d.deployedPreviously))
             var deployedGroup = deployedDim.group().reduceCount();
             deployedChart
             .height(200)
@@ -329,9 +346,11 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var supportedChart = dc.barChart('#supported-barchart')
@@ -349,14 +368,16 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var planningChart = dc.barChart('#planning-barchart')
             var planningMargins = {top: 10, right: 10, bottom: 50, left: 40}
-            var planningDim = this.ndx.dimension(d => d.planningAttendance)
+            var planningDim = this.ndx.dimension(d => this.handleNoResponse(d.planningAttendance))
             var planningGroup = planningDim.group().reduceCount();
             planningChart
             .height(200)
@@ -369,9 +390,11 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
-                     .attr('transform',"translate(-8,8)rotate(-45)");
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
             });
 
             var homeSupportChart = dc.barChart('#homeSupport-barchart')
