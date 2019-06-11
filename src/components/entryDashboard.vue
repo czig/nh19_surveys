@@ -475,9 +475,9 @@ export default {
     },
     mounted() {
         this.drawCharts()
-        console.log(this.ndx.all())
         dc.renderAll();
         dc.redrawAll();
+        console.log('mounted entryDashboard')
     }
 }
 </script>

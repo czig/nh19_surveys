@@ -5,22 +5,22 @@
             <v-tab :key="'mid'" @click="getMidData">Mid-Term</v-tab>
             <v-tab :key="'exit'" @click="getExitData">Exit</v-tab>
             <v-tab-item :key="'entry'">
-                <loader v-if="!loaded"></loader>
-                <entry-dashboard v-if="loaded"
+                <loader v-if="!loaded && showEntry"></loader>
+                <entry-dashboard v-if="loaded && showEntry"
                                  :data="entryData"
                                  :loaded="loaded">
                 </entry-dashboard>
             </v-tab-item>
             <v-tab-item :key="'mid'">
-                <loader v-if="!loaded"></loader>
-                <mid-dashboard v-if="loaded"
+                <loader v-if="!loaded && showMid"></loader>
+                <mid-dashboard v-if="loaded && showMid"
                                :data="midData"
                                :loaded="loaded">
                 </mid-dashboard>
             </v-tab-item>
             <v-tab-item :key="'exit'">
-                <loader v-if="!loaded"></loader>
-                <exit-dashboard v-if="loaded"
+                <loader v-if="!loaded && showExit"></loader>
+                <exit-dashboard v-if="loaded && showExit"
                                 :data="exitData"
                                 :loaded="loaded">
                 </exit-dashboard>
@@ -43,13 +43,19 @@ export default {
             entryData: [],
             midData: [],
             exitData: [],
-            loaded: false
+            loaded: false,
+            showEntry: true,
+            showMid: false,
+            showExit: false
         }
     },
     methods: {
         getEntryData: function() {
             console.log('entry')
             this.loaded = false 
+            this.showEntry = true 
+            this.showMid = false 
+            this.showExit = false
             axios.get('http://localhost:5005/api/getEntrySurveys').then(res => {
                 console.log(res)
                 this.entryData = res.data.data
@@ -60,6 +66,9 @@ export default {
         getMidData: function() {
             console.log('mid')
             this.loaded = false 
+            this.showEntry = false
+            this.showMid = true
+            this.showExit = false
             axios.get('http://localhost:5005/api/getMidSurveys').then(res => {
                 console.log(res)
                 this.midData = res.data.data
@@ -70,6 +79,9 @@ export default {
         getExitData: function() {
             console.log('exit')
             this.loaded = false 
+            this.showEntry = false
+            this.showMid = false 
+            this.showExit = true 
             axios.get('http://localhost:5005/api/getExitSurveys').then(res => {
                 console.log(res)
                 this.exitData = res.data.data
@@ -85,7 +97,11 @@ export default {
        'exit-dashboard': exitDashboard
     },
     created() {
+        console.log('created!')
         this.getEntryData();
+    },
+    beforeDestroy() {
+        console.log('beforeDestroy')
     }
 }
 </script>
