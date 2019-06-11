@@ -80,6 +80,9 @@ module.exports = {
           Popper: ['popper.js', 'default']
       }),
       new webpack.ProvidePlugin({
+        d3: 'd3',
+        crossfilter: 'crossfilter2',
+        dc: 'dc',
         _: 'lodash',
       })
   ],

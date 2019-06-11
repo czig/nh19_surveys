@@ -5,6 +5,7 @@ import ioSurvey from '@/components/ioSurvey'
 import entrySurvey from '@/components/entrySurvey'
 import campSurvey from '@/components/campSurvey'
 import exitSurvey from '@/components/exitSurvey'
+import dashboard from '@/components/dashboard'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/exitSurvey',
       name: 'exitSurvey',
       component: exitSurvey
-    }
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: dashboard 
+    },
   ]
 })
