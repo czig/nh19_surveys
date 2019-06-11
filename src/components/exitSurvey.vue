@@ -477,7 +477,7 @@
                                 <v-layout row wrap mt-2 pt-2 my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The social exchanges I had with the Guyanese were generally...</p>
+                                        <p class="subheading" mt-3 mb-0>The social interactions I had with the Guyanese were generally...</p>
                                         <v-radio-group  :value="responses.socialExchanges" 
                                                         @change="v => responses.socialExchanges = v"
                                                        height="8"
@@ -502,7 +502,7 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The professional exchanges I had with the Guyanese were generally...</p>
+                                        <p class="subheading" mt-3 mb-0>The professional interactions I had with the Guyanese were generally...</p>
                                         <v-radio-group  :value="responses.professionalExchanges" 
                                                         @change="v => responses.professionalExchanges = v"
                                                        height="8"
@@ -521,56 +521,6 @@
                                                     label="Comments"
                                                     :value="responses.professionalExchangesComments"
                                                     @change="v => responses.professionalExchangesComments = v">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout row wrap my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The social relationships I had with the Guyanese were generally...</p>
-                                        <v-radio-group  :value="responses.socialRelationships" 
-                                                        @change="v => responses.socialRelationships = v"
-                                                       height="8"
-                                                       row>
-                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
-                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
-                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
-                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
-                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
-                                            <v-radio label="N/A" value="NA"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="socialRelationshipsComments"
-                                                    label="Comments"
-                                                    :value="responses.socialRelationshipsComments"
-                                                    @change="v => responses.socialRelationshipsComments = v">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout row wrap my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>The professional relationships I had with the Guyanese were generally...</p>
-                                        <v-radio-group  :value="responses.professionalRelationships" 
-                                                        @change="v => responses.professionalRelationships = v"
-                                                       height="8"
-                                                       row>
-                                            <v-radio label="All Negative" value="All Negative"></v-radio> 
-                                            <v-radio label="More Negative than Positive" value="More Negative"></v-radio> 
-                                            <v-radio label="Equal Positive and Negative" value="Equal"></v-radio> 
-                                            <v-radio label="More Postivie than Negative" value="More Positive"></v-radio> 
-                                            <v-radio label="All Positive" value="All Positive"></v-radio> 
-                                            <v-radio label="N/A" value="NA"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="professionalRelationshipsComments"
-                                                    label="Comments"
-                                                    :value="responses.professionalRelationshipsComments"
-                                                    @change="v => responses.professionalRelationshipsComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -679,10 +629,6 @@
                     socialExchangesComments: '',
                     professionalExchanges: '',
                     professionalExchangesComments: '',
-                    socialRelationships: '',
-                    socialRelationshipsComments: '',
-                    professionalRelationships: '',
-                    professionalRelationshipsComments: '',
                     additionalComments: '',
                 },
                 likertScale: ['Strongly Disagree','Disagree','Slightly Disagree','Slightly Agree','Agree','Strongly Agree']
