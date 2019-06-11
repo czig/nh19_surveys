@@ -207,46 +207,6 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>I have been satisfied with the living conditions in my deployed location.</p>
-                                        <v-radio-group :value="responses.livingConditions"
-                                                        @change="v => responses.livingConditions = v"
-                                                       height="8"
-                                                       row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="livingConditionsComments"
-                                                    label="Comments"
-                                                    :value="responses.livingConditionsComments"
-                                                    @change="v => responses.livingConditionsComments = v">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout row wrap my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, AND spiritual health needs have been satisfied in my deployed location.</p>
-                                        <v-radio-group :value="responses.healthNeeds"
-                                                        @change="v => responses.healthNeeds = v"
-                                                       height="8"
-                                                       row>
-                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
-                                        </v-radio-group>
-                                    </v-flex>
-                                    <v-flex xs12>
-                                        <v-textarea solo
-                                                    name="healthNeedsComments"
-                                                    label="Comments"
-                                                    :value="responses.healthNeedsComments"
-                                                    @change="v => responses.healthNeedsComments = v">
-                                        </v-textarea>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout row wrap my-0 py-0>
-                                    <!--question 5-->
-                                    <v-flex xs12 my-0 py-0>
                                         <p class="subheading" mt-3 mb-0>I have been given the right equipment and resources in a timely manner.</p>
                                         <v-radio-group :value="responses.timelyEquipment"
                                                         @change="v => responses.timelyEquipment = v"
@@ -287,30 +247,20 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>Rate the overall quality of the planning for New Horizons.</p>
-                                        <v-radio-group :value="responses.planningRating"
-                                                        @change="v => responses.planningRating = v"
+                                        <p class="subheading" mt-3 mb-0>I have been able to communicate effectively, both within the Task Force and to outside organizations.</p>
+                                        <v-radio-group :value="responses.communicate"
+                                                        @change="v => responses.communicate = v"
                                                        height="8"
                                                        row>
-                                            <v-radio label="1 (Horrible)" value="1"></v-radio> 
-                                            <v-radio label="2" value="2"></v-radio> 
-                                            <v-radio label="3" value="3"></v-radio> 
-                                            <v-radio label="4" value="4"></v-radio> 
-                                            <v-radio label="5" value="5"></v-radio> 
-                                            <v-radio label="6" value="6"></v-radio> 
-                                            <v-radio label="7" value="7"></v-radio> 
-                                            <v-radio label="8" value="8"></v-radio> 
-                                            <v-radio label="9" value="9"></v-radio> 
-                                            <v-radio label="10 (Perfect)" value="10"></v-radio> 
-
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
                                         </v-radio-group>
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="planningRatingComments"
+                                                    name="communicateComments"
                                                     label="Comments"
-                                                    :value="responses.planningRatingComments"
-                                                    @change="v => responses.planningRatingComments = v">
+                                                    :value="responses.communicateComments"
+                                                    @change="v => responses.communicateComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
@@ -337,9 +287,9 @@
                                 <v-layout row wrap my-0 py-0>
                                     <!--question 5-->
                                     <v-flex xs12 my-0 py-0>
-                                        <p class="subheading" mt-3 mb-0>I have been able to communicate effectively, both within the Task Force and to outside organizations.</p>
-                                        <v-radio-group :value="responses.communicate"
-                                                        @change="v => responses.communicate = v"
+                                        <p class="subheading" mt-3 mb-0>My mental, physical, social, AND spiritual health needs have been satisfied in my deployed location.</p>
+                                        <v-radio-group :value="responses.healthNeeds"
+                                                        @change="v => responses.healthNeeds = v"
                                                        height="8"
                                                        row>
                                             <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
@@ -347,10 +297,60 @@
                                     </v-flex>
                                     <v-flex xs12>
                                         <v-textarea solo
-                                                    name="communicateComments"
+                                                    name="healthNeedsComments"
                                                     label="Comments"
-                                                    :value="responses.communicateComments"
-                                                    @change="v => responses.communicateComments = v">
+                                                    :value="responses.healthNeedsComments"
+                                                    @change="v => responses.healthNeedsComments = v">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>I have been satisfied with the living conditions in my deployed location.</p>
+                                        <v-radio-group :value="responses.livingConditions"
+                                                        @change="v => responses.livingConditions = v"
+                                                       height="8"
+                                                       row>
+                                            <v-radio v-for="likertItem of likertScale" :label="likertItem" :value="likertItem" :key="likertItem"></v-radio> 
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="livingConditionsComments"
+                                                    label="Comments"
+                                                    :value="responses.livingConditionsComments"
+                                                    @change="v => responses.livingConditionsComments = v">
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row wrap my-0 py-0>
+                                    <!--question 5-->
+                                    <v-flex xs12 my-0 py-0>
+                                        <p class="subheading" mt-3 mb-0>Rate the overall quality of the planning for New Horizons.</p>
+                                        <v-radio-group :value="responses.planningRating"
+                                                        @change="v => responses.planningRating = v"
+                                                       height="8"
+                                                       row>
+                                            <v-radio label="1 (Horrible)" value="1"></v-radio> 
+                                            <v-radio label="2" value="2"></v-radio> 
+                                            <v-radio label="3" value="3"></v-radio> 
+                                            <v-radio label="4" value="4"></v-radio> 
+                                            <v-radio label="5" value="5"></v-radio> 
+                                            <v-radio label="6" value="6"></v-radio> 
+                                            <v-radio label="7" value="7"></v-radio> 
+                                            <v-radio label="8" value="8"></v-radio> 
+                                            <v-radio label="9" value="9"></v-radio> 
+                                            <v-radio label="10 (Perfect)" value="10"></v-radio> 
+
+                                        </v-radio-group>
+                                    </v-flex>
+                                    <v-flex xs12>
+                                        <v-textarea solo
+                                                    name="planningRatingComments"
+                                                    label="Comments"
+                                                    :value="responses.planningRatingComments"
+                                                    @change="v => responses.planningRatingComments = v">
                                         </v-textarea>
                                     </v-flex>
                                 </v-layout>
