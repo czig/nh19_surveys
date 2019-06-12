@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid mt-0 pt-1>
         <v-tabs v-model="active" fixed-tabs>
             <v-tab :key="'entry'" @click="getEntryData">Entry</v-tab>
             <v-tab :key="'mid'" @click="getMidData">Mid-Term</v-tab>
