@@ -108,6 +108,62 @@
         </v-layout>
         <v-divider></v-divider>
         <v-layout row>
+            <v-flex xs6 id="deployAbility-barchart">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Deploy Ability</span>
+                    </template>
+                    <span>This exercise improved my ability to deploy and return from deployments.</span>
+                </v-tooltip>
+                <v-btn small
+                      style="visibility: hidden"
+                       class="reset"
+                       color="error"
+                       @click="resetChart('deployAbility-barchart')">Reset</v-btn>
+            </v-flex>
+            <v-flex xs6 id="conductingForeign-barchart">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Foreign Training</span>
+                    </template>
+                    <span>Conducting this exercise in a foreign country improved my training/skill development more than a similar exercise in the United States.</span>
+                </v-tooltip>
+                <v-btn small
+                      style="visibility: hidden"
+                       class="reset"
+                       color="error"
+                       @click="resetChart('conductingForeign-barchart')">Reset</v-btn>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs6 id="otherServices-barchart">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Other Services</span>
+                    </template>
+                    <span>This exercise improved my ability to work with other services.</span>
+                </v-tooltip>
+                <v-btn small
+                      style="visibility: hidden"
+                       class="reset"
+                       color="error"
+                       @click="resetChart('otherServices-barchart')">Reset</v-btn>
+            </v-flex>
+            <v-flex xs6 id="partnerNation-barchart">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Partner Nation</span>
+                    </template>
+                    <span>This exercise improved my ability to work with partner nation forces.</span>
+                </v-tooltip>
+                <v-btn small
+                      style="visibility: hidden"
+                       class="reset"
+                       color="error"
+                       @click="resetChart('partnerNation-barchart')">Reset</v-btn>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
             <v-flex xs6 id="knowledge-barchart">
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
@@ -296,7 +352,8 @@ export default {
                 "Slightly Agree": 5,
                 "Agree": 6,
                 "Strongly Agree": 7,
-                "No Response": 8
+                "NA": 8,
+                "No Response": 9,
             } 
         }
     },
@@ -510,6 +567,102 @@ export default {
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
             .ordering(d => this.noResponseOrdering(d))
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
+
+            var deployAbilityChart = dc.barChart('#deployAbility-barchart')
+            var deployAbilityMargins = {top: 10, right: 10, bottom: 80, left: 40}
+            var deployAbilityDim = this.ndx.dimension(d => this.handleNoResponse(d.deployAbility))
+            var deployAbilityGroup = deployAbilityDim.group().reduceCount();
+            deployAbilityChart
+            .height(250)
+            .dimension(deployAbilityDim)
+            .group(deployAbilityGroup)
+            .margins(deployAbilityMargins)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .elasticY(true)
+            .yAxisLabel("Count")
+            .controlsUseVisibility(true)
+            .ordering((d) => {
+                return this.likertOrdering[d.key]
+            })
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
+
+            var conductingForeignChart = dc.barChart('#conductingForeign-barchart')
+            var conductingForeignMargins = {top: 10, right: 10, bottom: 80, left: 40}
+            var conductingForeignDim = this.ndx.dimension(d => this.handleNoResponse(d.conductingForeign))
+            var conductingForeignGroup = conductingForeignDim.group().reduceCount();
+            conductingForeignChart
+            .height(250)
+            .dimension(conductingForeignDim)
+            .group(conductingForeignGroup)
+            .margins(conductingForeignMargins)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .elasticY(true)
+            .yAxisLabel("Count")
+            .controlsUseVisibility(true)
+            .ordering((d) => {
+                return this.likertOrdering[d.key]
+            })
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
+
+            var otherServicesChart = dc.barChart('#otherServices-barchart')
+            var otherServicesMargins = {top: 10, right: 10, bottom: 80, left: 40}
+            var otherServicesDim = this.ndx.dimension(d => this.handleNoResponse(d.otherServices))
+            var otherServicesGroup = otherServicesDim.group().reduceCount();
+            otherServicesChart
+            .height(250)
+            .dimension(otherServicesDim)
+            .group(otherServicesGroup)
+            .margins(otherServicesMargins)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .elasticY(true)
+            .yAxisLabel("Count")
+            .controlsUseVisibility(true)
+            .ordering((d) => {
+                return this.likertOrdering[d.key]
+            })
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
+
+            var partnerNationChart = dc.barChart('#partnerNation-barchart')
+            var partnerNationMargins = {top: 10, right: 10, bottom: 80, left: 40}
+            var partnerNationDim = this.ndx.dimension(d => this.handleNoResponse(d.partnerNation))
+            var partnerNationGroup = partnerNationDim.group().reduceCount();
+            partnerNationChart
+            .height(250)
+            .dimension(partnerNationDim)
+            .group(partnerNationGroup)
+            .margins(partnerNationMargins)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .elasticY(true)
+            .yAxisLabel("Count")
+            .controlsUseVisibility(true)
+            .ordering((d) => {
+                return this.likertOrdering[d.key]
+            })
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
                      .attr('text-anchor',"end")
