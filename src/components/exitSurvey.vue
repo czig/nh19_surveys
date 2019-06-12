@@ -653,7 +653,9 @@
                     } else {
                         alert('Something went wrong trying to send data to server. Please try again')
                     }
-                    this.submitLoading = false 
+                    setTimeout(() => {
+                        this.submitLoading = false 
+                    },2000)
                 })
                 .catch((err) => {
                     alert('Something went wrong trying to send data to server. Please try again')
