@@ -315,7 +315,10 @@
                     <v-layout row>
                         <v-btn color="warning" @click="step -= 1">Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="success" @click="submit">Submit</v-btn>
+                        <v-btn color="success" 
+                                :loading="submitLoading"
+                                :disabled="submitLoading"
+                                @click="submit">Submit</v-btn>
                     </v-layout>
                 </v-stepper-content>
                 <!--completion step-->
@@ -340,6 +343,7 @@
             return {
                 surveyName: 'Entry Survey',
                 step: 1, 
+                submitLoading: false,
                 responses: {
                     grade: '',
                     branch: '',
@@ -371,6 +375,7 @@
         },
         methods: {
             submit: function() {
+                this.submitLoading = true
                 console.log(this.responses)
                 axios.post("http://localhost:5005/api/submitEntrySurvey", this.responses)
                 .then((res) => {
@@ -380,9 +385,11 @@
                     } else {
                         alert('Something went wrong trying to send data to server. Please try again')
                     }
+                    this.submitLoading = false 
                 })
                 .catch((err) => {
                     alert('Something went wrong trying to send data to server. Please try again')
+                    this.submitLoading = false 
                 })
 
             }, 
@@ -391,7 +398,7 @@
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 this.step = step
             }
-        }
+        },
     }
 </script>
 
