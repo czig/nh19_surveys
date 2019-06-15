@@ -354,7 +354,15 @@ export default {
                 "Strongly Agree": 7,
                 "NA": 8,
                 "No Response": 9,
-            } 
+            },
+            interactionOrdering: {
+                "All Negative": 1,
+                "More Negative": 2,
+                "Equal": 3,
+                "More Positive": 4,
+                "All Positive": 5,
+                "NA": 6
+            }
         }
     },
     props: {
@@ -923,7 +931,7 @@ export default {
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
             .ordering((d) => {
-                return this.likertOrdering[d.key]
+                return this.interactionOrdering[d.key]
             })
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
@@ -947,7 +955,7 @@ export default {
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
             .ordering((d) => {
-                return this.likertOrdering[d.key]
+                return this.interactionOrdering[d.key]
             })
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
