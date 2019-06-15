@@ -424,10 +424,8 @@ export default {
             });
 
             var branchChart = dc.barChart('#branch-barchart')
-            var branchMargins = {top: 10, right: 10, bottom: 40, left: 40}
-            var branchDim = this.ndx.dimension(d => {
-                return d.branch || 'No Response';
-            })
+            var branchMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var branchDim = this.ndx.dimension(d => this.handleNoResponse(d.branch))
             var branchGroup = branchDim.group().reduceCount();
             branchChart
             .height(200)
@@ -448,8 +446,8 @@ export default {
             });
 
             var statusChart = dc.barChart('#status-barchart')
-            var statusMargins = {top: 10, right: 10, bottom: 40, left: 40}
-            var statusDim = this.ndx.dimension(d => d.status)
+            var statusMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var statusDim = this.ndx.dimension(d => this.handleNoResponse(d.status))
             var statusGroup = statusDim.group().reduceCount();
             statusChart
             .height(200)
