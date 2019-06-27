@@ -101,7 +101,7 @@
                                     <v-flex xs12>
                                         <v-text-field :value="responses.daysAtExercise"
                                                         @change="v => responses.daysAtExercise = v"
-                                                      label="Days in Country"
+                                                      label="How many days will you be in Guyana?"
                                                       mask="###"
                                                       >
                                         </v-text-field>
