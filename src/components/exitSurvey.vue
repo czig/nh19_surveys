@@ -104,7 +104,7 @@
                                     <v-flex xs12>
                                         <v-text-field   :value="responses.daysAtExercise" 
                                                         @change="v => responses.daysAtExercise = v"
-                                                      label="How many days will you be in Guyana?"
+                                                      label="What is your tour length, in days, in Guyana (as listed on your orders)?"
                                                       mask="###"
                                                       >
                                         </v-text-field>
