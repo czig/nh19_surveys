@@ -163,6 +163,21 @@
                        @click="resetChart('deployInfo-barchart')">Reset</v-btn>
             </v-flex>
         </v-layout>
+        <v-layout row>
+            <v-flex xs6 id="readInstructions-barchart">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Read Instructions</span>
+                    </template>
+                    <span>I thoroughly read the reporting instructions.</span>
+                </v-tooltip>
+                <v-btn small
+                      style="visibility: hidden"
+                       class="reset"
+                       color="error"
+                       @click="resetChart('readInstructions-barchart')">Reset</v-btn>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
@@ -476,6 +491,30 @@ export default {
             .dimension(deployInfoDim)
             .group(deployInfoGroup)
             .margins(deployInfoMargins)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
+            .elasticY(true)
+            .yAxisLabel("Count")
+            .controlsUseVisibility(true)
+            .ordering((d) => {
+                return this.likertOrdering[d.key]
+            })
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
+
+            var readInstructionsChart = dc.barChart('#readInstructions-barchart')
+            var readInstructionsMargins = {top: 10, right: 10, bottom: 80, left: 40}
+            var readInstructionsDim = this.ndx.dimension(d => d.readInstructions)
+            var readInstructionsGroup = readInstructionsDim.group().reduceCount();
+            readInstructionsChart
+            .height(250)
+            .dimension(readInstructionsDim)
+            .group(readInstructionsGroup)
+            .margins(readInstructionsMargins)
             .x(d3.scaleBand())
             .xUnits(dc.units.ordinal)
             .brushOn(false)
