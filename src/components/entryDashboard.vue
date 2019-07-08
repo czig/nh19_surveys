@@ -192,7 +192,8 @@ export default {
                 "Neutral": 4,
                 "Slightly Agree": 5,
                 "Agree": 6,
-                "Strongly Agree": 7
+                "Strongly Agree": 7,
+                "No Response": 8
             },
         }
     },
@@ -368,7 +369,7 @@ export default {
 
             var supportedChart = dc.barChart('#supported-barchart')
             var supportedMargins = {top: 10, right: 10, bottom: 50, left: 40}
-            var supportedDim = this.ndx.dimension(d => d.supportedPreviously)
+            var supportedDim = this.ndx.dimension(d => this.handleNoResponse(d.supportedPreviously))
             var supportedGroup = supportedDim.group().reduceCount();
             supportedChart
             .height(200)
@@ -412,7 +413,7 @@ export default {
 
             var homeSupportChart = dc.barChart('#homeSupport-barchart')
             var homeSupportMargins = {top: 10, right: 10, bottom: 80, left: 40}
-            var homeSupportDim = this.ndx.dimension(d => d.homeSupport)
+            var homeSupportDim = this.ndx.dimension(d => this.handleNoResponse(d.homeSupport))
             var homeSupportGroup = homeSupportDim.group().reduceCount();
             homeSupportChart
             .height(250)
@@ -436,7 +437,7 @@ export default {
 
             var afsouthSupportChart = dc.barChart('#afsouthSupport-barchart')
             var afsouthSupportMargins = {top: 10, right: 10, bottom: 80, left: 40}
-            var afsouthSupportDim = this.ndx.dimension(d => d.afsouthSupport)
+            var afsouthSupportDim = this.ndx.dimension(d => this.handleNoResponse(d.afsouthSupport))
             var afsouthSupportGroup = afsouthSupportDim.group().reduceCount();
             afsouthSupportChart
             .height(250)
@@ -460,7 +461,7 @@ export default {
 
             var adequateTimeChart = dc.barChart('#adequateTime-barchart')
             var adequateTimeMargins = {top: 10, right: 10, bottom: 80, left: 40}
-            var adequateTimeDim = this.ndx.dimension(d => d.adequateTime)
+            var adequateTimeDim = this.ndx.dimension(d => this.handleNoResponse(d.adequateTime))
             var adequateTimeGroup = adequateTimeDim.group().reduceCount();
             adequateTimeChart
             .height(250)
@@ -484,7 +485,7 @@ export default {
 
             var deployInfoChart = dc.barChart('#deployInfo-barchart')
             var deployInfoMargins = {top: 10, right: 10, bottom: 80, left: 40}
-            var deployInfoDim = this.ndx.dimension(d => d.deployInfo)
+            var deployInfoDim = this.ndx.dimension(d => this.handleNoResponse(d.deployInfo))
             var deployInfoGroup = deployInfoDim.group().reduceCount();
             deployInfoChart
             .height(250)
@@ -508,7 +509,7 @@ export default {
 
             var readInstructionsChart = dc.barChart('#readInstructions-barchart')
             var readInstructionsMargins = {top: 10, right: 10, bottom: 80, left: 40}
-            var readInstructionsDim = this.ndx.dimension(d => d.readInstructions)
+            var readInstructionsDim = this.ndx.dimension(d => this.handleNoResponse(d.readInstructions))
             var readInstructionsGroup = readInstructionsDim.group().reduceCount();
             readInstructionsChart
             .height(250)
