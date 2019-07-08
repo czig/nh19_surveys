@@ -425,7 +425,7 @@ export default {
 
             var supportedChart = dc.barChart('#supported-barchart')
             var supportedMargins = {top: 10, right: 10, bottom: 50, left: 40}
-            var supportedDim = this.ndx.dimension(d => d.supportedPreviously)
+            var supportedDim = this.ndx.dimension(d => this.handleNoResponse(d.supportedPreviously))
             var supportedGroup = supportedDim.group().reduceCount();
             supportedChart
             .height(200)
