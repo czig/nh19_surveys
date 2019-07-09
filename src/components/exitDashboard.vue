@@ -1,5 +1,35 @@
 <template>
     <v-container fluid>
+        <v-dialog
+            v-model="showComments"
+            width="600">
+            <v-card>
+                <v-card-title class="headline mb-0 pb-0">{{ questions[activeQuestion] }}
+                </v-card-title>
+                <v-card-text>
+                    <div class="pt-0 mt-0 mb-3 subheading">
+                        <div>Members responding with: 
+                            <span class="title font-weight-regular">{{ commentFilters.length > 0 ? commentFilters.join(", ") : 'anything' }}</span>
+                        </div>
+                        <div>Total Responses: 
+                            <span class="title font-weight-regular">{{ filteredResponses }}</span>
+                        </div>
+                        <div>Number of Responses leaving a comment: 
+                            <span class="title font-weight-regular">{{ filteredComments }}</span>
+                        </div>
+                    </div>
+                    <v-card v-for="(comment,index) in comments" :key="index" class="mb-1">
+                        <v-card-title class="subheading">{{ comment }}</v-card-title> 
+                    </v-card>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error"
+                           flat
+                           @click="showComments = false">Close</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
         <v-layout row>
             <div>
                 <span class="title font-weight-light">Filtered Records:</span>
@@ -120,6 +150,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('deployAbility-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('deployAbility')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="conductingForeign-barchart">
                 <v-tooltip bottom>
@@ -133,6 +166,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('conductingForeign-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('conductingForeign')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -148,6 +184,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('otherServices-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('otherServices')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="partnerNation-barchart">
                 <v-tooltip bottom>
@@ -161,6 +200,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('partnerNation-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('partnerNation')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -176,6 +218,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('knowledge-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('knowledge')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="utilization-barchart">
                 <v-tooltip bottom>
@@ -189,6 +234,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('utilization-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('utilization')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -204,6 +252,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('training-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('training')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="livingConditions-barchart">
                 <v-tooltip bottom>
@@ -217,6 +268,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('livingConditions-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('livingConditions')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -232,6 +286,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('healthNeeds-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('healthNeeds')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="timelyEquipment-barchart">
                 <v-tooltip bottom>
@@ -245,6 +302,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('timelyEquipment-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('timelyEquipment')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -260,6 +320,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('neededEquipment-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('neededEquipment')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="planningRating-barchart">
                 <v-tooltip bottom>
@@ -273,6 +336,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('planningRating-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('planningRating')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -288,6 +354,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('commNetworks-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('commNetworks')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="communicate-barchart">
                 <v-tooltip bottom>
@@ -301,6 +370,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('communicate-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('communicate')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -322,6 +394,9 @@
                        class="reset"
                        color="error"
                        @click="resetChart('socialExchanges-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('socialExchanges')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="professionalExchanges-barchart">
                 <v-tooltip bottom>
@@ -335,12 +410,16 @@
                        class="reset"
                        color="error"
                        @click="resetChart('professionalExchanges-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('professionalExchanges')">Comments</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -362,7 +441,33 @@ export default {
                 "More Positive": 4,
                 "All Positive": 5,
                 "NA": 6
-            }
+            },
+            questions: {
+                "deployAbility": "This exercise improved my ability to deploy and return from deployments.",
+                "conductingForeign": "Conducting this exercise in a foreign country improved my training/skill development more than a similar exercise in the United States.",
+                "otherServices": "This exercise improved my ability to work with other services.",
+                "partnerNation": "This exercise improved my ability to work with partner nation forces.",
+                "knowledge": "This exercise enhanced my military knowledge, skills, and/or abilities.",
+
+
+                "utilization": "I feel that my skillsets were properly utilized to execute the mission.",
+                "training": "I was properly trained to execute my assigned tasks.",
+                "livingConditions": "I am satisfied with the living conditions in my deployed location.",
+                "healthNeeds": "My mental, physical, social, AND spiritual health needs were satisfied in my deployed location.",
+                "timelyEquipment": "I was given the right equipment and resources in a timely manner.",
+                "neededEquipment": "I was given all of the equipment and resources I needed to completed my assigned tasks.",
+                "planningRating": "Rate the overall quality of the planning for New Horizons.",
+                "commNetworks": "The provided communication networks were sufficient to accomplish the tasks I was assigned.",
+                "communicate": "I was able to communicate effectively, both within the Task Force and to outside organizations.",
+                "socialExchanges": "The social interactions I had with the Guyanese were generally...",
+                "professionalExchanges": "The professional interactions I had with the Guyanese were generally...",
+            },
+            showComments: false,
+            activeQuestion: '',
+            comments: [],
+            commentFilters: [],
+            filteredResponses: 0,
+            filteredComments: 0,
         }
     },
     props: {
@@ -380,6 +485,17 @@ export default {
             return crossfilter(this.data) 
         },
     },
+    watch: {
+        showComments: function(val) {
+            if (val == false) {
+                this.activeQuestion = ''
+                this.comments = []
+                this.filteredResponses = 0
+                this.filteredComments = 0
+                this.commentFilters = []
+            }
+        }   
+    },
     methods: {
         resetAll: function() {
             dc.filterAll()
@@ -392,6 +508,34 @@ export default {
                 chart.filterAll()
             }) 
             dc.redrawAll()
+        },
+        seeComments: function(question) {
+            //show dialog
+            this.showComments = true   
+            //build variables
+            this.activeQuestion = question
+            var commentName = question + 'Comments'
+            //grab chart
+            var chart = dc.chartRegistry.list().filter((chart) => {
+                var chartId = question + '-barchart'
+                return chart.anchorName() == chartId 
+            })[0]
+            this.commentFilters = _.clone(chart.filters())
+            axios.post('http://localhost:5005/api/getExitComment', {
+                'comment': commentName,
+                'filters': {
+                    'columnName': question,
+                    'filters': chart.filters()
+                } 
+            }).then((res) => {
+                this.filteredResponses = res.data.data.length
+                for (let i = 0; i < res.data.data.length; i++) {
+                    if (res.data.data[i][commentName]) {
+                        this.comments.push(res.data.data[i][commentName])
+                    }
+                } 
+                this.filteredComments = this.comments.length
+            })
         },
         handleNoResponse: function(element) {
             return element || 'No Response';   
