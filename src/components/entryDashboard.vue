@@ -1,5 +1,35 @@
 <template>
     <v-container fluid>
+        <v-dialog
+            v-model="showComments"
+            width="600">
+            <v-card>
+                <v-card-title class="headline mb-0 pb-0">{{ questions[activeQuestion] }}
+                </v-card-title>
+                <v-card-text>
+                    <div class="pt-0 mt-0 mb-3 subheading">
+                        <div>Members responding with: 
+                            <span class="title font-weight-regular">{{ commentFilters.length > 0 ? commentFilters.join(", ") : 'anything' }}</span>
+                        </div>
+                        <div>Total Responses: 
+                            <span class="title font-weight-regular">{{ filteredResponses }}</span>
+                        </div>
+                        <div>Number of Responses leaving a comment: 
+                            <span class="title font-weight-regular">{{ filteredComments }}</span>
+                        </div>
+                    </div>
+                    <v-card v-for="(comment,index) in comments" :key="index" class="mb-1">
+                        <v-card-title class="subheading">{{ comment }}</v-card-title> 
+                    </v-card>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error"
+                           flat
+                           @click="showComments = false">Close</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
         <v-layout row>
             <div>
                 <span class="title font-weight-light">Filtered Records:</span>
@@ -113,26 +143,32 @@
                     <template v-slot:activator="{ on }">
                         <span v-on="on" class="headline">Home Support</span>
                     </template>
-                    <span>I was adequately supported by my home station unit to deploy.</span>
+                    <span>{{ questions['homeSupport'] }}</span>
                 </v-tooltip>
                 <v-btn small
                       style="visibility: hidden"
                        class="reset"
                        color="error"
                        @click="resetChart('homeSupport-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('homeSupport')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="afsouthSupport-barchart">
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
                         <span v-on="on" class="headline">USSOUTHCOM/AFSOUTH Support</span>
                     </template>
-                    <span>I was adequately supported by my USSOUTHCOM/AFSOUTH to deploy.</span>
+                    <span>{{ questions['afsouthSupport'] }}</span>
                 </v-tooltip>
                 <v-btn small
                       style="visibility: hidden"
                        class="reset"
                        color="error"
                        @click="resetChart('afsouthSupport-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('afsouthSupport')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -141,26 +177,32 @@
                     <template v-slot:activator="{ on }">
                         <span v-on="on" class="headline">Adequate Time</span>
                     </template>
-                    <span>I received adequate time to accomplish all pre-deployment requirements prior to my departure from my home station.</span>
+                    <span>{{ questions['adequateTime'] }}</span>
                 </v-tooltip>
                 <v-btn small
                       style="visibility: hidden"
                        class="reset"
                        color="error"
                        @click="resetChart('adequateTime-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('adequateTime')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="deployInfo-barchart">
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
                         <span v-on="on" class="headline">Deployment Information</span>
                     </template>
-                    <span>The deployment information I received was clear, concise, and easy to follow.</span>
+                    <span>{{ questions['deployInfo'] }}</span>
                 </v-tooltip>
                 <v-btn small
                       style="visibility: hidden"
                        class="reset"
                        color="error"
                        @click="resetChart('deployInfo-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('deployInfo')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -169,19 +211,23 @@
                     <template v-slot:activator="{ on }">
                         <span v-on="on" class="headline">Read Instructions</span>
                     </template>
-                    <span>I thoroughly read the reporting instructions.</span>
+                    <span>{{ questions['readInstructions'] }}</span>
                 </v-tooltip>
                 <v-btn small
                       style="visibility: hidden"
                        class="reset"
                        color="error"
                        @click="resetChart('readInstructions-barchart')">Reset</v-btn>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('readInstructions')">Comments</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -195,6 +241,19 @@ export default {
                 "Strongly Agree": 7,
                 "No Response": 8
             },
+            questions: {
+                "homeSupport": "I was adequately supported by my home station unit to deploy.",
+                "afsouthSupport": "I was adequately supported by USSOUTHCOM/AFSOUTH to deploy.",
+                "adequateTime": "I received adequate time to accomplish all pre-deployment requirements prior to my departure from my home station.", 
+                "deployInfo": "The deployment information I received was clear, concise, and easy to follow.",
+                "readInstructions": "I thoroughly read the reporting instructions."
+            },
+            showComments: false,
+            activeQuestion: '',
+            comments: [],
+            commentFilters: [],
+            filteredResponses: 0,
+            filteredComments: 0,
         }
     },
     props: {
@@ -212,6 +271,17 @@ export default {
             return crossfilter(this.data) 
         },
     },
+    watch: {
+        showComments: function(val) {
+            if (val == false) {
+                this.activeQuestion = ''
+                this.comments = []
+                this.filteredResponses = 0
+                this.filteredComments = 0
+                this.commentFilters = []
+            }
+        }   
+    },
     methods: {
         resetAll: function() {
             dc.filterAll()
@@ -227,6 +297,34 @@ export default {
         },
         handleNoResponse: function(element) {
             return element || 'No Response';   
+        },
+        seeComments: function(question) {
+            //show dialog
+            this.showComments = true   
+            //build variables
+            this.activeQuestion = question
+            var commentName = question + 'Comments'
+            //grab chart
+            var chart = dc.chartRegistry.list().filter((chart) => {
+                var chartId = question + '-barchart'
+                return chart.anchorName() == chartId 
+            })[0]
+            this.commentFilters = _.clone(chart.filters())
+            axios.post('http://localhost:5005/api/getEntryComment', {
+                'comment': commentName,
+                'filters': {
+                    'columnName': question,
+                    'filters': chart.filters()
+                } 
+            }).then((res) => {
+                this.filteredResponses = res.data.data.length
+                for (let i = 0; i < res.data.data.length; i++) {
+                    if (res.data.data[i][commentName]) {
+                        this.comments.push(res.data.data[i][commentName])
+                    }
+                } 
+                this.filteredComments = this.comments.length
+            })
         },
         noResponseOrdering: function(element) {
             return element.key === 'No Response' ? 'ZZZ' : element.key;   
