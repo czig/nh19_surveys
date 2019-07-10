@@ -415,6 +415,19 @@
                        @click.stop="seeComments('professionalExchanges')">Comments</v-btn>
             </v-flex>
         </v-layout>
+        <v-layout row>
+            <v-flex xs6 id="additional">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Additional Comments</span>
+                    </template>
+                    <span>{{ questions['additional'] }}</span>
+                </v-tooltip>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('additional')">Comments</v-btn>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
@@ -461,6 +474,7 @@ export default {
                 "communicate": "I was able to communicate effectively, both within the Task Force and to outside organizations.",
                 "socialExchanges": "The social interactions I had with the Guyanese were generally...",
                 "professionalExchanges": "The professional interactions I had with the Guyanese were generally...",
+                "additional": "Do you have any addtional comments?"
             },
             showComments: false,
             activeQuestion: '',
@@ -520,12 +534,12 @@ export default {
                 var chartId = question + '-barchart'
                 return chart.anchorName() == chartId 
             })[0]
-            this.commentFilters = _.clone(chart.filters())
+            this.commentFilters = _.clone(chart ? chart.filters() : [])
             axios.post('http://localhost:5005/api/getExitComment', {
                 'comment': commentName,
                 'filters': {
                     'columnName': question,
-                    'filters': chart.filters()
+                    'filters': this.commentFilters 
                 } 
             }).then((res) => {
                 this.filteredResponses = res.data.data.length

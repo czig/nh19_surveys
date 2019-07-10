@@ -222,6 +222,17 @@
                        color="primary"
                        @click.stop="seeComments('readInstructions')">Comments</v-btn>
             </v-flex>
+            <v-flex xs6 id="additional">
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <span v-on="on" class="headline">Additional Comments</span>
+                    </template>
+                    <span>{{ questions['additional'] }}</span>
+                </v-tooltip>
+                <v-btn small
+                       color="primary"
+                       @click.stop="seeComments('additional')">Comments</v-btn>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -246,7 +257,8 @@ export default {
                 "afsouthSupport": "I was adequately supported by USSOUTHCOM/AFSOUTH to deploy.",
                 "adequateTime": "I received adequate time to accomplish all pre-deployment requirements prior to my departure from my home station.", 
                 "deployInfo": "The deployment information I received was clear, concise, and easy to follow.",
-                "readInstructions": "I thoroughly read the reporting instructions."
+                "readInstructions": "I thoroughly read the reporting instructions.",
+                "additional": "Do you have any addtional comments?"
             },
             showComments: false,
             activeQuestion: '',
@@ -309,12 +321,12 @@ export default {
                 var chartId = question + '-barchart'
                 return chart.anchorName() == chartId 
             })[0]
-            this.commentFilters = _.clone(chart.filters())
+            this.commentFilters = _.clone(chart ? chart.filters() : [])
             axios.post('http://localhost:5005/api/getEntryComment', {
                 'comment': commentName,
                 'filters': {
                     'columnName': question,
-                    'filters': chart.filters()
+                    'filters': this.commentFilters 
                 } 
             }).then((res) => {
                 this.filteredResponses = res.data.data.length
