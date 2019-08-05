@@ -75,7 +75,7 @@
             </v-flex>
         </v-layout>
         <v-layout row>
-            <v-flex xs2 id="role-barchart">
+            <v-flex xs4 id="role-barchart">
                 <span class="headline">Role</span>
                 <v-btn small
                       style="visibility: hidden"
@@ -83,7 +83,7 @@
                        color="error"
                        @click="resetChart('role-barchart')">Reset</v-btn>
             </v-flex>
-            <v-flex xs4 id="days-barchart">
+            <v-flex xs2 id="days-barchart">
                 <span class="headline">Days at Exercise</span>
                 <v-btn small
                       style="visibility: hidden"
@@ -402,20 +402,27 @@ export default {
             });
 
             var daysChart = dc.barChart('#days-barchart')
-            var daysMargins = {top: 10, right: 10, bottom: 40, left: 40}
-            var daysDim = this.ndx.dimension(d => d.daysAtExercise)
+            var daysMargins = {top: 10, right: 10, bottom: 60, left: 40}
+            var daysDim = this.ndx.dimension((d) => {
+                return d.daysAtExercise > 60 ? 'Durational' : 'Rotational';
+            })
             var daysGroup = daysDim.group().reduceCount();
             daysChart
-            .height(275)
+            .height(250)
             .dimension(daysDim)
             .group(daysGroup)
             .margins(daysMargins)
-            .x(d3.scaleLinear().domain([0,d3.max(this.data, d => d.daysAtExercise) + 10]))
-            .xUnits(dc.units.integers)
-            .brushOn(true)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .brushOn(false)
             .elasticY(true)
             .yAxisLabel("Count")
-            .controlsUseVisibility(true);
+            .controlsUseVisibility(true)
+            .on('pretransition',(chart) => {
+                chart.selectAll('g.x text')
+                     .attr('text-anchor',"end")
+                     .attr('transform',"translate(-8,0)rotate(-45)");
+            });
 
             var deployedChart = dc.barChart('#deployed-barchart')
             var deployedMargins = {top: 10, right: 10, bottom: 60, left: 40}
