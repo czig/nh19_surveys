@@ -585,7 +585,12 @@ export default {
             var daysChart = dc.barChart('#days-barchart')
             var daysMargins = {top: 10, right: 10, bottom: 60, left: 40}
             var daysDim = this.ndx.dimension((d) => {
-                return d.daysAtExercise > 60 ? 'Durational' : 'Rotational';
+                if (d.daysAtExercise == 0) {
+                    return 'No Response'
+                }
+                else {
+                    return d.daysAtExercise > 60 ? 'Durational' : 'Rotational';
+                }
             })
             var daysGroup = daysDim.group().reduceCount();
             daysChart
@@ -599,6 +604,7 @@ export default {
             .elasticY(true)
             .yAxisLabel("Count")
             .controlsUseVisibility(true)
+            .ordering(d => this.noResponseOrdering(d))
             .on('pretransition',(chart) => {
                 chart.selectAll('g.x text')
                      .attr('text-anchor',"end")
