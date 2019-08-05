@@ -150,9 +150,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('deployAbility-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('deployAbility')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="conductingForeign-barchart">
                 <v-tooltip bottom>
@@ -166,9 +163,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('conductingForeign-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('conductingForeign')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -184,9 +178,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('otherServices-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('otherServices')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="partnerNation-barchart">
                 <v-tooltip bottom>
@@ -200,9 +191,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('partnerNation-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('partnerNation')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -218,9 +206,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('knowledge-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('knowledge')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="utilization-barchart">
                 <v-tooltip bottom>
@@ -234,9 +219,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('utilization-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('utilization')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -252,9 +234,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('training-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('training')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="livingConditions-barchart">
                 <v-tooltip bottom>
@@ -268,9 +247,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('livingConditions-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('livingConditions')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -286,9 +262,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('healthNeeds-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('healthNeeds')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="timelyEquipment-barchart">
                 <v-tooltip bottom>
@@ -302,9 +275,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('timelyEquipment-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('timelyEquipment')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -320,9 +290,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('neededEquipment-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('neededEquipment')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="planningRating-barchart">
                 <v-tooltip bottom>
@@ -336,9 +303,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('planningRating-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('planningRating')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -354,9 +318,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('commNetworks-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('commNetworks')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="communicate-barchart">
                 <v-tooltip bottom>
@@ -370,9 +331,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('communicate-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('communicate')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -394,9 +352,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('socialExchanges-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('socialExchanges')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="professionalExchanges-barchart">
                 <v-tooltip bottom>
@@ -410,22 +365,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('professionalExchanges-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('professionalExchanges')">Comments</v-btn>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6 id="additional">
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <span v-on="on" class="headline">Additional Comments</span>
-                    </template>
-                    <span>{{ questions['additional'] }}</span>
-                </v-tooltip>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('additional')">Comments</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -525,7 +464,9 @@ export default {
         },
         seeComments: function(question) {
             //show dialog
-            this.showComments = true   
+            //this.showComments = true   
+            //prevent dialog from showing
+            this.showComments = false
             //build variables
             this.activeQuestion = question
             var commentName = question + 'Comments'
@@ -535,21 +476,7 @@ export default {
                 return chart.anchorName() == chartId 
             })[0]
             this.commentFilters = _.clone(chart ? chart.filters() : [])
-            axios.post('http://localhost:5005/api/getExitComment', {
-                'comment': commentName,
-                'filters': {
-                    'columnName': question,
-                    'filters': this.commentFilters 
-                } 
-            }).then((res) => {
-                this.filteredResponses = res.data.data.length
-                for (let i = 0; i < res.data.data.length; i++) {
-                    if (res.data.data[i][commentName]) {
-                        this.comments.push(res.data.data[i][commentName])
-                    }
-                } 
-                this.filteredComments = this.comments.length
-            })
+            //remove axios call
         },
         handleNoResponse: function(element) {
             return element || 'No Response';   

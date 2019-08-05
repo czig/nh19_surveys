@@ -150,9 +150,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('homeSupport-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('homeSupport')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="afsouthSupport-barchart">
                 <v-tooltip bottom>
@@ -166,9 +163,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('afsouthSupport-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('afsouthSupport')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -184,9 +178,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('adequateTime-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('adequateTime')">Comments</v-btn>
             </v-flex>
             <v-flex xs6 id="deployInfo-barchart">
                 <v-tooltip bottom>
@@ -200,9 +191,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('deployInfo-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('deployInfo')">Comments</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -218,20 +206,6 @@
                        class="reset"
                        color="error"
                        @click="resetChart('readInstructions-barchart')">Reset</v-btn>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('readInstructions')">Comments</v-btn>
-            </v-flex>
-            <v-flex xs6 id="additional">
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <span v-on="on" class="headline">Additional Comments</span>
-                    </template>
-                    <span>{{ questions['additional'] }}</span>
-                </v-tooltip>
-                <v-btn small
-                       color="primary"
-                       @click.stop="seeComments('additional')">Comments</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -312,7 +286,9 @@ export default {
         },
         seeComments: function(question) {
             //show dialog
-            this.showComments = true   
+            //this.showComments = true   
+            //prevent dialog from showing
+            this.showComments = false   
             //build variables
             this.activeQuestion = question
             var commentName = question + 'Comments'
@@ -322,21 +298,7 @@ export default {
                 return chart.anchorName() == chartId 
             })[0]
             this.commentFilters = _.clone(chart ? chart.filters() : [])
-            axios.post('http://localhost:5005/api/getEntryComment', {
-                'comment': commentName,
-                'filters': {
-                    'columnName': question,
-                    'filters': this.commentFilters 
-                } 
-            }).then((res) => {
-                this.filteredResponses = res.data.data.length
-                for (let i = 0; i < res.data.data.length; i++) {
-                    if (res.data.data[i][commentName]) {
-                        this.comments.push(res.data.data[i][commentName])
-                    }
-                } 
-                this.filteredComments = this.comments.length
-            })
+            //remove axios post
         },
         noResponseOrdering: function(element) {
             return element.key === 'No Response' ? 'ZZZ' : element.key;   
