@@ -13,7 +13,7 @@
     "@babel/polyfill": "^7.4.4",
     "axios": "^0.18.0",
     "dc": "^3.0.12",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "material-design-icons-iconfont": "^5.0.1",
     "popper.js": "^1.15.0",
     "vue": "^2.5.2",
